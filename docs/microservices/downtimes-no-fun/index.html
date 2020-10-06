@@ -31,7 +31,7 @@
 
 
 
-  <meta property="article:published_time" content="2020-10-05T00:00:00-04:00">
+  <meta property="article:published_time" content="2020-10-05T11:30:30-04:00">
 
 
 
@@ -113,13 +113,13 @@
 <meta property="og:url" content="https://visualizeit-consulting.github.io/astd/microservices/downtimes-no-fun/" />
 <meta property="og:site_name" content="Always Stuff to Do" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2020-10-05T00:00:00-04:00" />
+<meta property="article:published_time" content="2020-10-05T11:30:30-04:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Downtime’s no fun - Time to build" />
 <meta name="twitter:site" content="@" />
 <meta name="twitter:creator" content="@Andy Whitaker" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Andy Whitaker"},"description":"So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a new job. I’m not used to down time, so I’m going to fill it by building something and trying out some new ideas. In the last couple of years I fell in love with CQRS+ES and Kubernetes as a way to build and manage microservices. I used the Axon Framework by AxonIQ for its Event Sourcing and it’s adherence to Domain Driven Design. I used the JHipster Framework as a way to get the infrastructure and libraries needed for robust microservices. I don’t have a real reference implementation to fall back on and since I started this journey in 2017, things have already changed. So I plan to work through building an event-driven microservice application with CQRS+ES architecture. I’m going to deploy it first to an on-prem kubernetes cluster and then to either AWS or GCP (maybe both). I’m a java developer so this will be in Java, but I hope along the way to push into Kotlin (still the JVM I know) and learn some GoLang and some different front ends. I also plan to follow some sane design procedures and talk through the process of thinking through and building an event-driven and event-sourced system. It’s not the typical way to build an application, but its a much better one. So as I go along I’m going to take time to write about the concepts and the pitfalls I and my previous team encountered. Should be fun! The first hurdle though is: What am I going to build? I’ve got some thoughts on that and will elaborate in the next post.","@type":"BlogPosting","url":"https://visualizeit-consulting.github.io/astd/microservices/downtimes-no-fun/","dateModified":"2020-10-05T00:00:00-04:00","datePublished":"2020-10-05T00:00:00-04:00","headline":"Downtime’s no fun - Time to build","mainEntityOfPage":{"@type":"WebPage","@id":"https://visualizeit-consulting.github.io/astd/microservices/downtimes-no-fun/"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Andy Whitaker"},"description":"So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a new job. I’m not used to down time, so I’m going to fill it by building something and trying out some new ideas. In the last couple of years I fell in love with CQRS+ES and Kubernetes as a way to build and manage microservices. I used the Axon Framework by AxonIQ for its Event Sourcing and it’s adherence to Domain Driven Design. I used the JHipster Framework as a way to get the infrastructure and libraries needed for robust microservices. I don’t have a real reference implementation to fall back on and since I started this journey in 2017, things have already changed. So I plan to work through building an event-driven microservice application with CQRS+ES architecture. I’m going to deploy it first to an on-prem kubernetes cluster and then to either AWS or GCP (maybe both). I’m a java developer so this will be in Java, but I hope along the way to push into Kotlin (still the JVM I know) and learn some GoLang and some different front ends. I also plan to follow some sane design procedures and talk through the process of thinking through and building an event-driven and event-sourced system. It’s not the typical way to build an application, but its a much better one. So as I go along I’m going to take time to write about the concepts and the pitfalls I and my previous team encountered. Should be fun! The first hurdle though is: What am I going to build? I’ve got some thoughts on that and will elaborate in the next post.","@type":"BlogPosting","headline":"Downtime’s no fun - Time to build","dateModified":"2020-10-05T11:30:30-04:00","url":"https://visualizeit-consulting.github.io/astd/microservices/downtimes-no-fun/","datePublished":"2020-10-05T11:30:30-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://visualizeit-consulting.github.io/astd/microservices/downtimes-no-fun/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -314,7 +314,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Downtime’s no fun - Time to build">
     <meta itemprop="description" content="So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a new job. I’m not used to down time, so I’m going to fill it by building something and trying out some new ideas.In the last couple of years I fell in love with CQRS+ES and Kubernetes as a way to build and manage microservices. I used the Axon Framework by AxonIQ for its Event Sourcing and it’s adherence to Domain Driven Design. I used the JHipster Framework as a way to get the infrastructure and libraries needed for robust microservices.I don’t have a real reference implementation to fall back on and since I started this journey in 2017, things have already changed. So I plan to work through building an event-driven microservice application with CQRS+ES architecture. I’m going to deploy it first to an on-prem kubernetes cluster and then to either AWS or GCP (maybe both). I’m a java developer so this will be in Java, but I hope along the way to push into Kotlin (still the JVM I know) and learn some GoLang and some different front ends.I also plan to follow some sane design procedures and talk through the process of thinking through and building an event-driven and event-sourced system. It’s not the typical way to build an application, but its a much better one. So as I go along I’m going to take time to write about the concepts and the pitfalls I and my previous team encountered. Should be fun!The first hurdle though is: What am I going to build? I’ve got some thoughts on that and will elaborate in the next post.">
-    <meta itemprop="datePublished" content="2020-10-05T00:00:00-04:00">
+    <meta itemprop="datePublished" content="2020-10-05T11:30:30-04:00">
     
 
     <div class="page__inner-wrap">
@@ -402,7 +402,7 @@
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-05T00:00:00-04:00">October 5, 2020</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-05T11:30:30-04:00">October 5, 2020</time></p>
         
       </footer>
 
@@ -422,10 +422,11 @@
       
   <nav class="pagination">
     
-      <a href="#" class="pagination--pager disabled">Previous</a>
-    
-    
       <a href="/astd/team/coming-up-for-air/" class="pagination--pager" title="Coming up for air
+">Previous</a>
+    
+    
+      <a href="/astd/microservices/job-req-application/" class="pagination--pager" title="The CQRS+ES Job Application Tracker
 ">Next</a>
     
   </nav>
@@ -440,6 +441,34 @@
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/microservices/job-req-application/" rel="permalink">The CQRS+ES Job Application Tracker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one i...</p>
+  </article>
+</div>
+
         
           
 

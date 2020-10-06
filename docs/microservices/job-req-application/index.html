@@ -1,0 +1,609 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>The CQRS+ES Job Application Tracker - Always Stuff to Do</title>
+<meta name="description" content="In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own.  I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features:     Registering users   Logging in with different roles (job seeker, job poster)   Uploading documents (e.g. resumes or cover letters)   Saving a draft to complete later   Notifications and tracking changes   There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps:     Flesh out the requirements using Story Mapping and Event Storming/Modeling   Determine a Most Viable Product from the Story Map   Determine and design the bounded contexts   Begin implementing the microservices   In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the following:     Setup on-prem Kubernetes cluster   Setup CI/CD infrastructure and pipelines   Create Docker Compose scripts for running containers locally before before deployment to Kubernetes.   Next Up: Story Mapping ">
+
+
+  <meta name="author" content="Andy Whitaker">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Always Stuff to Do">
+<meta property="og:title" content="The CQRS+ES Job Application Tracker">
+<meta property="og:url" content="https://visualizeit-consulting.github.io/astd/microservices/job-req-application/">
+
+
+  <meta property="og:description" content="In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own.  I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features:     Registering users   Logging in with different roles (job seeker, job poster)   Uploading documents (e.g. resumes or cover letters)   Saving a draft to complete later   Notifications and tracking changes   There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps:     Flesh out the requirements using Story Mapping and Event Storming/Modeling   Determine a Most Viable Product from the Story Map   Determine and design the bounded contexts   Begin implementing the microservices   In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the following:     Setup on-prem Kubernetes cluster   Setup CI/CD infrastructure and pipelines   Create Docker Compose scripts for running containers locally before before deployment to Kubernetes.   Next Up: Story Mapping ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-06T11:37:30-04:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://visualizeit-consulting.github.io/astd/microservices/job-req-application/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Andy Whitaker",
+      "url": "https://visualizeit-consulting.github.io/astd/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/astd/feed.xml" type="application/atom+xml" rel="alternate" title="Always Stuff to Do Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/astd/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The CQRS+ES Job Application Tracker | Always Stuff to Do</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="The CQRS+ES Job Application Tracker" />
+<meta name="author" content="Andy Whitaker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own. I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features: Registering users Logging in with different roles (job seeker, job poster) Uploading documents (e.g. resumes or cover letters) Saving a draft to complete later Notifications and tracking changes There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps: Flesh out the requirements using Story Mapping and Event Storming/Modeling Determine a Most Viable Product from the Story Map Determine and design the bounded contexts Begin implementing the microservices In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the following: Setup on-prem Kubernetes cluster Setup CI/CD infrastructure and pipelines Create Docker Compose scripts for running containers locally before before deployment to Kubernetes. Next Up: Story Mapping" />
+<meta property="og:description" content="In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own. I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features: Registering users Logging in with different roles (job seeker, job poster) Uploading documents (e.g. resumes or cover letters) Saving a draft to complete later Notifications and tracking changes There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps: Flesh out the requirements using Story Mapping and Event Storming/Modeling Determine a Most Viable Product from the Story Map Determine and design the bounded contexts Begin implementing the microservices In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the following: Setup on-prem Kubernetes cluster Setup CI/CD infrastructure and pipelines Create Docker Compose scripts for running containers locally before before deployment to Kubernetes. Next Up: Story Mapping" />
+<link rel="canonical" href="https://visualizeit-consulting.github.io/astd/microservices/job-req-application/" />
+<meta property="og:url" content="https://visualizeit-consulting.github.io/astd/microservices/job-req-application/" />
+<meta property="og:site_name" content="Always Stuff to Do" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-06T11:37:30-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The CQRS+ES Job Application Tracker" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Andy Whitaker" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Andy Whitaker"},"description":"In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own. I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features: Registering users Logging in with different roles (job seeker, job poster) Uploading documents (e.g. resumes or cover letters) Saving a draft to complete later Notifications and tracking changes There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps: Flesh out the requirements using Story Mapping and Event Storming/Modeling Determine a Most Viable Product from the Story Map Determine and design the bounded contexts Begin implementing the microservices In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the following: Setup on-prem Kubernetes cluster Setup CI/CD infrastructure and pipelines Create Docker Compose scripts for running containers locally before before deployment to Kubernetes. Next Up: Story Mapping","@type":"BlogPosting","headline":"The CQRS+ES Job Application Tracker","dateModified":"2020-10-06T11:37:30-04:00","url":"https://visualizeit-consulting.github.io/astd/microservices/job-req-application/","datePublished":"2020-10-06T11:37:30-04:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://visualizeit-consulting.github.io/astd/microservices/job-req-application/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/astd/">
+          Always Stuff to Do
+          <span class="site-subtitle">Keeping up in a fast paced world</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/astd/posts/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/about/" >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/astd/assets/images/bio-photo.jpg" alt="Andy Whitaker" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Andy Whitaker</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Championing Event Driven Microservices with CQRS+ES and DDD</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Indianapolis, Indiana</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/VisualizeITC" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/visualizeit-consulting" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/visualizeit-consulting/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:astd@visualizeit-consulting.com">
+            <meta itemprop="email" content="astd@visualizeit-consulting.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The CQRS+ES Job Application Tracker">
+    <meta itemprop="description" content="In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own.I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features:  Registering users  Logging in with different roles (job seeker, job poster)  Uploading documents (e.g. resumes or cover letters)  Saving a draft to complete later  Notifications and tracking changesThere is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps:  Flesh out the requirements using Story Mapping and Event Storming/Modeling  Determine a Most Viable Product from the Story Map  Determine and design the bounded contexts  Begin implementing the microservicesIn addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do thefollowing:  Setup on-prem Kubernetes cluster  Setup CI/CD infrastructure and pipelines  Create Docker Compose scripts for running containers locally before before deployment to Kubernetes.Next Up: Story Mapping">
+    <meta itemprop="datePublished" content="2020-10-06T11:37:30-04:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">The CQRS+ES Job Application Tracker
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not submit). The rejection included phrases like “After careful consideration..” which of course was a lie. The next day I received another rejection email for the same job application that I never finished. I know that the chances are high that the site is just poorly designed and implemented and it got me thinking about how a site like this works and maybe I could write my own.</p>
+
+<p>I think this would be a reasonable project to demonstrate the benefits of event-driven microservices with CQRS+ES because I think it’s an easy to understand Domain and can have some useful features:</p>
+
+<ul>
+  <li>Registering users</li>
+  <li>Logging in with different roles (job seeker, job poster)</li>
+  <li>Uploading documents (e.g. resumes or cover letters)</li>
+  <li>Saving a draft to complete later</li>
+  <li>Notifications and tracking changes</li>
+</ul>
+
+<p>There is a lot to do in order to get this done, particularly since I’m a team of one. My roadmap consists of the following steps:</p>
+
+<ol>
+  <li>Flesh out the requirements using Story Mapping and Event Storming/Modeling</li>
+  <li>Determine a Most Viable Product from the Story Map</li>
+  <li>Determine and design the bounded contexts</li>
+  <li>Begin implementing the microservices</li>
+</ol>
+
+<p>In addition to those steps, I will also be planning out and creating some infrastructure for the deployment. In the beginning I’m going to need to do the
+following:</p>
+
+<ol>
+  <li>Setup on-prem Kubernetes cluster</li>
+  <li>Setup CI/CD infrastructure and pipelines</li>
+  <li>Create Docker Compose scripts for running containers locally before before deployment to Kubernetes.</li>
+</ol>
+
+<p><em>Next Up: Story Mapping</em></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/astd/tags/#ddd" class="page__taxonomy-item" rel="tag">DDD</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/astd/tags/#event-sourcing" class="page__taxonomy-item" rel="tag">Event Sourcing</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/astd/tags/#kubernetes" class="page__taxonomy-item" rel="tag">Kubernetes</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/astd/tags/#requirements" class="page__taxonomy-item" rel="tag">Requirements</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/astd/categories/#microservices" class="page__taxonomy-item" rel="tag">Microservices</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-06T11:37:30-04:00">October 6, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=The+CQRS%2BES+Job+Application+Tracker%20https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fjob-req-application%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fjob-req-application%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fjob-req-application%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/astd/microservices/downtimes-no-fun/" class="pagination--pager" title="Downtime’s no fun - Time to build
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/microservices/downtimes-no-fun/" rel="permalink">Downtime’s no fun - Time to build
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/team/coming-up-for-air/" rel="permalink">Coming up for air
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">I’ve been wanting to start a blog for the last 5 years, but there has always been stuff to do, that at the time, seemed more important. I finally feel like I...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://linkedin.com" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    <li><a href="/astd/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Andy Whitaker. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/astd/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/astd/assets/js/lunr/lunr.min.js"></script>
+<script src="/astd/assets/js/lunr/lunr-store.js"></script>
+<script src="/astd/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
