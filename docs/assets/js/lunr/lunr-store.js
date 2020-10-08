@@ -13,4 +13,9 @@ var store = [{
         "excerpt":"In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one in particular, that sent me a rejection a few minutes after I saved my application as a draft (I did not...","categories": ["Microservices"],
         "tags": ["Requirements","Event Sourcing","Kubernetes","DDD"],
         "url": "https://visualizeit-consulting.github.io/astd/microservices/job-req-application/",
+        "teaser":null},{
+        "title": "A Detour to Personas and Journeys",
+        "excerpt":"So I might have gotten a little ahead of myself. I meant this post to be about story mapping the job board application. When I sat down to that, I realized I left off a couple of other steps that should/could to be done prior to creating a Story Map....","categories": ["Microservices"],
+        "tags": ["Story Mapping","UX"],
+        "url": "https://visualizeit-consulting.github.io/astd/microservices/detour-to-personas-and-journeys/",
         "teaser":null}]
