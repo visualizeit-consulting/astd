@@ -1,0 +1,767 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Story Mapping the Job Board - Always Stuff to Do</title>
+<meta name="description" content="Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap.  What is a Story Map A story map is a collaborative planning tool that allows you to break down user stories in a two dimensional format. Jeff Patton came up with the technique to help those living in backlog hell. It’s an easy concept to grasp, you place stories in a line from left to right to capture linear flow through your application (or system). Big stories that are too big to get done in a sprint go at the top and are the User Activities. Below this line of big stories are smaller stories that break down the User Activities into User Tasks. Then underneath the User Tasks are Sub-Tasks. The sub-tasks become the stories that you implement and are estimated by the team.  Why do a Story Map? It gives you visibility into the work that needs to be done. It allows you to “fire a tracer bullet” through the work you are planning. That tracer bullet lets you figure out what would provide the most value in the shortest amount of time. Drawing horizontal lines through the map you can group the sub-tasks into planned releases or sprints.  This stuff works: In April of 2018 my team was given a new project. The requirements were based on new laws being enacted by the State’s Legislature and the laws mandated that the citizenry would be able fulfill legal obligations on-line starting January 1, 2019. So we had a hard deadline and a new business domain the team knew nothing about. I introduced the idea of building a story map and we walked through the requirements with the analysts and the client. We peppered a wall with different colored sticky notes and after a lot of work had a nearly complete story map covering two walls of a conference room. After doing this, we realized there was no way we would be done on time. Working together with blue masking tape, we divided and grouped the sub-tasks until we identified what absolutely had to be there on day 1 (our MVP) and what could follow in subsequent releases. Working together created a shared understanding, got buy-in from all the stakeholders, and we successfully released the application at the end of December 2018.  Building the Story Map So to build out the map let’s review the user journeys and try to find some common themes or groupings.      Now if we take those groupings we can revise the user journeys:    Notice how they both have a Join activity they will need to perform, but it’s happening at different times. There is nothing to constrain Ken from joining the job board when he is ready to apply, but Sarah needs to join before she does anything. To make things easier let’s change Ken’s Journey to align with Sarah’s.    That’s better! The blue sticky notes of the journey represent the User Activities of our story map. The items that were grouped together are a good starting point for the User Tasks. Let’s see how it looks:    This is looking good so far. We have a reasonable linear flow through the application and we’ve identified who is doing what and when. Is this perfect? No. Ken could login and register after he has already found a job to apply to, but it is reasonable. You will find that when story mapping there are times when some activities can be performed by different users at different times or other issues. That’s when the team needs to have conversations and discuss the stories and come to a shared understanding. Under each of the User Tasks we can define the User Sub-Tasks. The sub-tasks are those things the user can do to complete the User Task.    Now the sub-tasks are added under their respective user tasks. I should note that the sub-tasks, in fact tasks and activities as well, can be written more formally as stories using As a [type of user], I want [an action] so that [a value]. It’s pretty simple and I really like writing stories in this notation. So why didn’t I? First, trying to show formal user stories on all the sticky notes in my diagram would make it hard to read. Second, in real life my team found out the same thing. We did start out trying to put all that information on a sticky note before sticking it to the wall. It slowed us down and we had to stand closer to the wall in order to read it. It was better to quickly get the activities, tasks, and sub-tasks down and organized by the user so we could talk about the stories. If something didn’t make sense, we just threw it away and wrote a new one. Pretty simple. Now that we have our story map taking shape how do we decide what to work on first?  Firing a Tracer Bullet I find the best way to get started is to “fire a tracer bullet” through the system. It is a technique to identify the end-to-end path that quickly provides value. It’s not the same as an MVP or even a release. It allows the team to build the skeleton of the application and then start hanging things from it. This approach helps mitigate risk. If a problem is encountered with the architecture it’s discovered early making it easier to pivot. Implementing the tracer bullet path may take multiple sprints, but I’ve found it is the quickest way to early success.    Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but I did pull down some sub-tasks that I think are not essential in finding the skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review applicant work experience”. I think it’s important to figure out early on how to upload and open files. I actually thought just leaving “Open Resume” because the resume should have all the details that the Hiring Manager needs to make a decision.  Tip from the Trench: I’m not kidding about providing value as fast as possible. About a year ago I was asked to give my opinion on another state agency’s modernization project. They were thinking of hiring a large consulting firm to do the work. This firm was all about moving the project to the cloud. I sat in a presentation going over the planned work. It was all about the tooling the cloud provider uh.. provided. There was weeks of work just to get the developers working in the cloud. Nowhere was there mention of what business value existed at the end of 3 months of work. A colleague of mine pointed that out and the firm was not hired. Even when trying new technology you must always provide value that the business can see.  Next Steps Usually at this point, the team would look at the tracer bullet stories and start estimating them and begin sprint planning. Since I’m a team of one I’m going to move forward with event storming and maybe some event modeling.  References and Tools    The New Backlog   User Stories   How to Write a Good User Story: with Examples &amp; Templates   Tracer Bullets  ">
+
+
+  <meta name="author" content="Andy Whitaker">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Always Stuff to Do">
+<meta property="og:title" content="Story Mapping the Job Board">
+<meta property="og:url" content="https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/">
+
+
+  <meta property="og:description" content="Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap.  What is a Story Map A story map is a collaborative planning tool that allows you to break down user stories in a two dimensional format. Jeff Patton came up with the technique to help those living in backlog hell. It’s an easy concept to grasp, you place stories in a line from left to right to capture linear flow through your application (or system). Big stories that are too big to get done in a sprint go at the top and are the User Activities. Below this line of big stories are smaller stories that break down the User Activities into User Tasks. Then underneath the User Tasks are Sub-Tasks. The sub-tasks become the stories that you implement and are estimated by the team.  Why do a Story Map? It gives you visibility into the work that needs to be done. It allows you to “fire a tracer bullet” through the work you are planning. That tracer bullet lets you figure out what would provide the most value in the shortest amount of time. Drawing horizontal lines through the map you can group the sub-tasks into planned releases or sprints.  This stuff works: In April of 2018 my team was given a new project. The requirements were based on new laws being enacted by the State’s Legislature and the laws mandated that the citizenry would be able fulfill legal obligations on-line starting January 1, 2019. So we had a hard deadline and a new business domain the team knew nothing about. I introduced the idea of building a story map and we walked through the requirements with the analysts and the client. We peppered a wall with different colored sticky notes and after a lot of work had a nearly complete story map covering two walls of a conference room. After doing this, we realized there was no way we would be done on time. Working together with blue masking tape, we divided and grouped the sub-tasks until we identified what absolutely had to be there on day 1 (our MVP) and what could follow in subsequent releases. Working together created a shared understanding, got buy-in from all the stakeholders, and we successfully released the application at the end of December 2018.  Building the Story Map So to build out the map let’s review the user journeys and try to find some common themes or groupings.      Now if we take those groupings we can revise the user journeys:    Notice how they both have a Join activity they will need to perform, but it’s happening at different times. There is nothing to constrain Ken from joining the job board when he is ready to apply, but Sarah needs to join before she does anything. To make things easier let’s change Ken’s Journey to align with Sarah’s.    That’s better! The blue sticky notes of the journey represent the User Activities of our story map. The items that were grouped together are a good starting point for the User Tasks. Let’s see how it looks:    This is looking good so far. We have a reasonable linear flow through the application and we’ve identified who is doing what and when. Is this perfect? No. Ken could login and register after he has already found a job to apply to, but it is reasonable. You will find that when story mapping there are times when some activities can be performed by different users at different times or other issues. That’s when the team needs to have conversations and discuss the stories and come to a shared understanding. Under each of the User Tasks we can define the User Sub-Tasks. The sub-tasks are those things the user can do to complete the User Task.    Now the sub-tasks are added under their respective user tasks. I should note that the sub-tasks, in fact tasks and activities as well, can be written more formally as stories using As a [type of user], I want [an action] so that [a value]. It’s pretty simple and I really like writing stories in this notation. So why didn’t I? First, trying to show formal user stories on all the sticky notes in my diagram would make it hard to read. Second, in real life my team found out the same thing. We did start out trying to put all that information on a sticky note before sticking it to the wall. It slowed us down and we had to stand closer to the wall in order to read it. It was better to quickly get the activities, tasks, and sub-tasks down and organized by the user so we could talk about the stories. If something didn’t make sense, we just threw it away and wrote a new one. Pretty simple. Now that we have our story map taking shape how do we decide what to work on first?  Firing a Tracer Bullet I find the best way to get started is to “fire a tracer bullet” through the system. It is a technique to identify the end-to-end path that quickly provides value. It’s not the same as an MVP or even a release. It allows the team to build the skeleton of the application and then start hanging things from it. This approach helps mitigate risk. If a problem is encountered with the architecture it’s discovered early making it easier to pivot. Implementing the tracer bullet path may take multiple sprints, but I’ve found it is the quickest way to early success.    Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but I did pull down some sub-tasks that I think are not essential in finding the skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review applicant work experience”. I think it’s important to figure out early on how to upload and open files. I actually thought just leaving “Open Resume” because the resume should have all the details that the Hiring Manager needs to make a decision.  Tip from the Trench: I’m not kidding about providing value as fast as possible. About a year ago I was asked to give my opinion on another state agency’s modernization project. They were thinking of hiring a large consulting firm to do the work. This firm was all about moving the project to the cloud. I sat in a presentation going over the planned work. It was all about the tooling the cloud provider uh.. provided. There was weeks of work just to get the developers working in the cloud. Nowhere was there mention of what business value existed at the end of 3 months of work. A colleague of mine pointed that out and the firm was not hired. Even when trying new technology you must always provide value that the business can see.  Next Steps Usually at this point, the team would look at the tracer bullet stories and start estimating them and begin sprint planning. Since I’m a team of one I’m going to move forward with event storming and maybe some event modeling.  References and Tools    The New Backlog   User Stories   How to Write a Good User Story: with Examples &amp; Templates   Tracer Bullets  ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-09T09:30:30-04:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Andy Whitaker",
+      "url": "https://visualizeit-consulting.github.io/astd/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/astd/feed.xml" type="application/atom+xml" rel="alternate" title="Always Stuff to Do Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/astd/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Story Mapping the Job Board | Always Stuff to Do</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Story Mapping the Job Board" />
+<meta name="author" content="Andy Whitaker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap. What is a Story Map A story map is a collaborative planning tool that allows you to break down user stories in a two dimensional format. Jeff Patton came up with the technique to help those living in backlog hell. It’s an easy concept to grasp, you place stories in a line from left to right to capture linear flow through your application (or system). Big stories that are too big to get done in a sprint go at the top and are the User Activities. Below this line of big stories are smaller stories that break down the User Activities into User Tasks. Then underneath the User Tasks are Sub-Tasks. The sub-tasks become the stories that you implement and are estimated by the team. Why do a Story Map? It gives you visibility into the work that needs to be done. It allows you to “fire a tracer bullet” through the work you are planning. That tracer bullet lets you figure out what would provide the most value in the shortest amount of time. Drawing horizontal lines through the map you can group the sub-tasks into planned releases or sprints. This stuff works: In April of 2018 my team was given a new project. The requirements were based on new laws being enacted by the State’s Legislature and the laws mandated that the citizenry would be able fulfill legal obligations on-line starting January 1, 2019. So we had a hard deadline and a new business domain the team knew nothing about. I introduced the idea of building a story map and we walked through the requirements with the analysts and the client. We peppered a wall with different colored sticky notes and after a lot of work had a nearly complete story map covering two walls of a conference room. After doing this, we realized there was no way we would be done on time. Working together with blue masking tape, we divided and grouped the sub-tasks until we identified what absolutely had to be there on day 1 (our MVP) and what could follow in subsequent releases. Working together created a shared understanding, got buy-in from all the stakeholders, and we successfully released the application at the end of December 2018. Building the Story Map So to build out the map let’s review the user journeys and try to find some common themes or groupings. Now if we take those groupings we can revise the user journeys: Notice how they both have a Join activity they will need to perform, but it’s happening at different times. There is nothing to constrain Ken from joining the job board when he is ready to apply, but Sarah needs to join before she does anything. To make things easier let’s change Ken’s Journey to align with Sarah’s. That’s better! The blue sticky notes of the journey represent the User Activities of our story map. The items that were grouped together are a good starting point for the User Tasks. Let’s see how it looks: This is looking good so far. We have a reasonable linear flow through the application and we’ve identified who is doing what and when. Is this perfect? No. Ken could login and register after he has already found a job to apply to, but it is reasonable. You will find that when story mapping there are times when some activities can be performed by different users at different times or other issues. That’s when the team needs to have conversations and discuss the stories and come to a shared understanding. Under each of the User Tasks we can define the User Sub-Tasks. The sub-tasks are those things the user can do to complete the User Task. Now the sub-tasks are added under their respective user tasks. I should note that the sub-tasks, in fact tasks and activities as well, can be written more formally as stories using As a [type of user], I want [an action] so that [a value]. It’s pretty simple and I really like writing stories in this notation. So why didn’t I? First, trying to show formal user stories on all the sticky notes in my diagram would make it hard to read. Second, in real life my team found out the same thing. We did start out trying to put all that information on a sticky note before sticking it to the wall. It slowed us down and we had to stand closer to the wall in order to read it. It was better to quickly get the activities, tasks, and sub-tasks down and organized by the user so we could talk about the stories. If something didn’t make sense, we just threw it away and wrote a new one. Pretty simple. Now that we have our story map taking shape how do we decide what to work on first? Firing a Tracer Bullet I find the best way to get started is to “fire a tracer bullet” through the system. It is a technique to identify the end-to-end path that quickly provides value. It’s not the same as an MVP or even a release. It allows the team to build the skeleton of the application and then start hanging things from it. This approach helps mitigate risk. If a problem is encountered with the architecture it’s discovered early making it easier to pivot. Implementing the tracer bullet path may take multiple sprints, but I’ve found it is the quickest way to early success. Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but I did pull down some sub-tasks that I think are not essential in finding the skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review applicant work experience”. I think it’s important to figure out early on how to upload and open files. I actually thought just leaving “Open Resume” because the resume should have all the details that the Hiring Manager needs to make a decision. Tip from the Trench: I’m not kidding about providing value as fast as possible. About a year ago I was asked to give my opinion on another state agency’s modernization project. They were thinking of hiring a large consulting firm to do the work. This firm was all about moving the project to the cloud. I sat in a presentation going over the planned work. It was all about the tooling the cloud provider uh.. provided. There was weeks of work just to get the developers working in the cloud. Nowhere was there mention of what business value existed at the end of 3 months of work. A colleague of mine pointed that out and the firm was not hired. Even when trying new technology you must always provide value that the business can see. Next Steps Usually at this point, the team would look at the tracer bullet stories and start estimating them and begin sprint planning. Since I’m a team of one I’m going to move forward with event storming and maybe some event modeling. References and Tools The New Backlog User Stories How to Write a Good User Story: with Examples &amp; Templates Tracer Bullets" />
+<meta property="og:description" content="Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap. What is a Story Map A story map is a collaborative planning tool that allows you to break down user stories in a two dimensional format. Jeff Patton came up with the technique to help those living in backlog hell. It’s an easy concept to grasp, you place stories in a line from left to right to capture linear flow through your application (or system). Big stories that are too big to get done in a sprint go at the top and are the User Activities. Below this line of big stories are smaller stories that break down the User Activities into User Tasks. Then underneath the User Tasks are Sub-Tasks. The sub-tasks become the stories that you implement and are estimated by the team. Why do a Story Map? It gives you visibility into the work that needs to be done. It allows you to “fire a tracer bullet” through the work you are planning. That tracer bullet lets you figure out what would provide the most value in the shortest amount of time. Drawing horizontal lines through the map you can group the sub-tasks into planned releases or sprints. This stuff works: In April of 2018 my team was given a new project. The requirements were based on new laws being enacted by the State’s Legislature and the laws mandated that the citizenry would be able fulfill legal obligations on-line starting January 1, 2019. So we had a hard deadline and a new business domain the team knew nothing about. I introduced the idea of building a story map and we walked through the requirements with the analysts and the client. We peppered a wall with different colored sticky notes and after a lot of work had a nearly complete story map covering two walls of a conference room. After doing this, we realized there was no way we would be done on time. Working together with blue masking tape, we divided and grouped the sub-tasks until we identified what absolutely had to be there on day 1 (our MVP) and what could follow in subsequent releases. Working together created a shared understanding, got buy-in from all the stakeholders, and we successfully released the application at the end of December 2018. Building the Story Map So to build out the map let’s review the user journeys and try to find some common themes or groupings. Now if we take those groupings we can revise the user journeys: Notice how they both have a Join activity they will need to perform, but it’s happening at different times. There is nothing to constrain Ken from joining the job board when he is ready to apply, but Sarah needs to join before she does anything. To make things easier let’s change Ken’s Journey to align with Sarah’s. That’s better! The blue sticky notes of the journey represent the User Activities of our story map. The items that were grouped together are a good starting point for the User Tasks. Let’s see how it looks: This is looking good so far. We have a reasonable linear flow through the application and we’ve identified who is doing what and when. Is this perfect? No. Ken could login and register after he has already found a job to apply to, but it is reasonable. You will find that when story mapping there are times when some activities can be performed by different users at different times or other issues. That’s when the team needs to have conversations and discuss the stories and come to a shared understanding. Under each of the User Tasks we can define the User Sub-Tasks. The sub-tasks are those things the user can do to complete the User Task. Now the sub-tasks are added under their respective user tasks. I should note that the sub-tasks, in fact tasks and activities as well, can be written more formally as stories using As a [type of user], I want [an action] so that [a value]. It’s pretty simple and I really like writing stories in this notation. So why didn’t I? First, trying to show formal user stories on all the sticky notes in my diagram would make it hard to read. Second, in real life my team found out the same thing. We did start out trying to put all that information on a sticky note before sticking it to the wall. It slowed us down and we had to stand closer to the wall in order to read it. It was better to quickly get the activities, tasks, and sub-tasks down and organized by the user so we could talk about the stories. If something didn’t make sense, we just threw it away and wrote a new one. Pretty simple. Now that we have our story map taking shape how do we decide what to work on first? Firing a Tracer Bullet I find the best way to get started is to “fire a tracer bullet” through the system. It is a technique to identify the end-to-end path that quickly provides value. It’s not the same as an MVP or even a release. It allows the team to build the skeleton of the application and then start hanging things from it. This approach helps mitigate risk. If a problem is encountered with the architecture it’s discovered early making it easier to pivot. Implementing the tracer bullet path may take multiple sprints, but I’ve found it is the quickest way to early success. Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but I did pull down some sub-tasks that I think are not essential in finding the skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review applicant work experience”. I think it’s important to figure out early on how to upload and open files. I actually thought just leaving “Open Resume” because the resume should have all the details that the Hiring Manager needs to make a decision. Tip from the Trench: I’m not kidding about providing value as fast as possible. About a year ago I was asked to give my opinion on another state agency’s modernization project. They were thinking of hiring a large consulting firm to do the work. This firm was all about moving the project to the cloud. I sat in a presentation going over the planned work. It was all about the tooling the cloud provider uh.. provided. There was weeks of work just to get the developers working in the cloud. Nowhere was there mention of what business value existed at the end of 3 months of work. A colleague of mine pointed that out and the firm was not hired. Even when trying new technology you must always provide value that the business can see. Next Steps Usually at this point, the team would look at the tracer bullet stories and start estimating them and begin sprint planning. Since I’m a team of one I’m going to move forward with event storming and maybe some event modeling. References and Tools The New Backlog User Stories How to Write a Good User Story: with Examples &amp; Templates Tracer Bullets" />
+<link rel="canonical" href="https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/" />
+<meta property="og:url" content="https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/" />
+<meta property="og:site_name" content="Always Stuff to Do" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-09T09:30:30-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Story Mapping the Job Board" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Andy Whitaker" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Andy Whitaker"},"description":"Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap. What is a Story Map A story map is a collaborative planning tool that allows you to break down user stories in a two dimensional format. Jeff Patton came up with the technique to help those living in backlog hell. It’s an easy concept to grasp, you place stories in a line from left to right to capture linear flow through your application (or system). Big stories that are too big to get done in a sprint go at the top and are the User Activities. Below this line of big stories are smaller stories that break down the User Activities into User Tasks. Then underneath the User Tasks are Sub-Tasks. The sub-tasks become the stories that you implement and are estimated by the team. Why do a Story Map? It gives you visibility into the work that needs to be done. It allows you to “fire a tracer bullet” through the work you are planning. That tracer bullet lets you figure out what would provide the most value in the shortest amount of time. Drawing horizontal lines through the map you can group the sub-tasks into planned releases or sprints. This stuff works: In April of 2018 my team was given a new project. The requirements were based on new laws being enacted by the State’s Legislature and the laws mandated that the citizenry would be able fulfill legal obligations on-line starting January 1, 2019. So we had a hard deadline and a new business domain the team knew nothing about. I introduced the idea of building a story map and we walked through the requirements with the analysts and the client. We peppered a wall with different colored sticky notes and after a lot of work had a nearly complete story map covering two walls of a conference room. After doing this, we realized there was no way we would be done on time. Working together with blue masking tape, we divided and grouped the sub-tasks until we identified what absolutely had to be there on day 1 (our MVP) and what could follow in subsequent releases. Working together created a shared understanding, got buy-in from all the stakeholders, and we successfully released the application at the end of December 2018. Building the Story Map So to build out the map let’s review the user journeys and try to find some common themes or groupings. Now if we take those groupings we can revise the user journeys: Notice how they both have a Join activity they will need to perform, but it’s happening at different times. There is nothing to constrain Ken from joining the job board when he is ready to apply, but Sarah needs to join before she does anything. To make things easier let’s change Ken’s Journey to align with Sarah’s. That’s better! The blue sticky notes of the journey represent the User Activities of our story map. The items that were grouped together are a good starting point for the User Tasks. Let’s see how it looks: This is looking good so far. We have a reasonable linear flow through the application and we’ve identified who is doing what and when. Is this perfect? No. Ken could login and register after he has already found a job to apply to, but it is reasonable. You will find that when story mapping there are times when some activities can be performed by different users at different times or other issues. That’s when the team needs to have conversations and discuss the stories and come to a shared understanding. Under each of the User Tasks we can define the User Sub-Tasks. The sub-tasks are those things the user can do to complete the User Task. Now the sub-tasks are added under their respective user tasks. I should note that the sub-tasks, in fact tasks and activities as well, can be written more formally as stories using As a [type of user], I want [an action] so that [a value]. It’s pretty simple and I really like writing stories in this notation. So why didn’t I? First, trying to show formal user stories on all the sticky notes in my diagram would make it hard to read. Second, in real life my team found out the same thing. We did start out trying to put all that information on a sticky note before sticking it to the wall. It slowed us down and we had to stand closer to the wall in order to read it. It was better to quickly get the activities, tasks, and sub-tasks down and organized by the user so we could talk about the stories. If something didn’t make sense, we just threw it away and wrote a new one. Pretty simple. Now that we have our story map taking shape how do we decide what to work on first? Firing a Tracer Bullet I find the best way to get started is to “fire a tracer bullet” through the system. It is a technique to identify the end-to-end path that quickly provides value. It’s not the same as an MVP or even a release. It allows the team to build the skeleton of the application and then start hanging things from it. This approach helps mitigate risk. If a problem is encountered with the architecture it’s discovered early making it easier to pivot. Implementing the tracer bullet path may take multiple sprints, but I’ve found it is the quickest way to early success. Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but I did pull down some sub-tasks that I think are not essential in finding the skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review applicant work experience”. I think it’s important to figure out early on how to upload and open files. I actually thought just leaving “Open Resume” because the resume should have all the details that the Hiring Manager needs to make a decision. Tip from the Trench: I’m not kidding about providing value as fast as possible. About a year ago I was asked to give my opinion on another state agency’s modernization project. They were thinking of hiring a large consulting firm to do the work. This firm was all about moving the project to the cloud. I sat in a presentation going over the planned work. It was all about the tooling the cloud provider uh.. provided. There was weeks of work just to get the developers working in the cloud. Nowhere was there mention of what business value existed at the end of 3 months of work. A colleague of mine pointed that out and the firm was not hired. Even when trying new technology you must always provide value that the business can see. Next Steps Usually at this point, the team would look at the tracer bullet stories and start estimating them and begin sprint planning. Since I’m a team of one I’m going to move forward with event storming and maybe some event modeling. References and Tools The New Backlog User Stories How to Write a Good User Story: with Examples &amp; Templates Tracer Bullets","@type":"BlogPosting","url":"https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/","dateModified":"2020-10-09T09:30:30-04:00","datePublished":"2020-10-09T09:30:30-04:00","headline":"Story Mapping the Job Board","mainEntityOfPage":{"@type":"WebPage","@id":"https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/astd/">
+          Always Stuff to Do
+          <span class="site-subtitle">Keeping up in a fast paced world</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/astd/posts/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/astd/about/" >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/astd/assets/images/bio-photo.jpg" alt="Andy Whitaker" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Andy Whitaker</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Championing Event Driven Microservices with CQRS+ES and DDD</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Indianapolis, Indiana</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/VisualizeITC" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/visualizeit-consulting" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/visualizeit-consulting/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:astd@visualizeit-consulting.com">
+            <meta itemprop="email" content="astd@visualizeit-consulting.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Story Mapping the Job Board">
+    <meta itemprop="description" content="Now that the detour is over, we can focus on creating a story map for the jobboard. Story mapping has been around for years, but I am still surprised by thenumber of people I work with who have never heard of it. So let’s recap.What is a Story MapA story map is a collaborative planning tool that allows you to break down userstories in a two dimensional format. Jeff Patton came up with the technique tohelp those living in backlog hell. It’s an easy concept to grasp, you placestories in a line from left to right to capture linear flow through yourapplication (or system). Big stories that are too big to get done in a sprint goat the top and are the User Activities. Below this line of big stories aresmaller stories that break down the User Activities into User Tasks. Thenunderneath the User Tasks are Sub-Tasks. The sub-tasks become the storiesthat you implement and are estimated by the team.Why do a Story Map?It gives you visibility into the work that needs to be done. It allows you to“fire a tracer bullet” through the work you are planning. That tracer bulletlets you figure out what would provide the most value in the shortest amount oftime. Drawing horizontal lines through the map you can group the sub-tasks intoplanned releases or sprints.This stuff works: In April of 2018 my team was given a new project. Therequirements were based on new laws being enacted by the State’s Legislature andthe laws mandated that the citizenry would be able fulfill legal obligationson-line starting January 1, 2019. So we had a hard deadline and a new businessdomain the team knew nothing about. I introduced the idea of building astory map and we walked through the requirements with the analysts and theclient. We peppered a wall with different colored sticky notes and after a lotof work had a nearly complete story map covering two walls of a conference room.After doing this, we realized there was no way we would be done on time. Workingtogether with blue masking tape, we divided and grouped the sub-tasks until weidentified what absolutely had to be there on day 1 (our MVP) and what couldfollow in subsequent releases. Working together created a shared understanding,got buy-in from all the stakeholders, and we successfully released the applicationat the end of December 2018.Building the Story MapSo to build out the map let’s review theuser journeys andtry to find some common themes or groupings.Now if we take those groupings we can revise the user journeys:Notice how they both have a Join activity they will need to perform, but it’shappening at different times. There is nothing to constrain Ken from joining thejob board when he is ready to apply, but Sarah needs to join before she doesanything. To make things easier let’s change Ken’s Journey to align with Sarah’s.That’s better! The blue sticky notes of the journey represent the UserActivities of our story map. The items that were grouped together are agood starting point for the User Tasks. Let’s see how it looks:This is looking good so far. We have a reasonable linear flow through theapplication and we’ve identified who is doing what and when. Is this perfect? No.Ken could login and register after he has already found a job to apply to, butit is reasonable. You will find that when story mapping there are times when someactivities can be performed by different users at different times or otherissues. That’s when the team needs to have conversations and discuss the storiesand come to a shared understanding. Under each of the User Tasks we candefine the User Sub-Tasks. The sub-tasks are those things the user can do tocomplete the User Task.Now the sub-tasks are added under their respective user tasks. I should notethat the sub-tasks, in fact tasks and activities as well, can be written more formally asstories using As a [type of user], I want [an action] so that [a value]. It’spretty simple and I really like writing stories in this notation. So why didn’tI? First, trying to show formal user stories on all thesticky notes in my diagram would make it hard to read. Second, in real lifemy team found out the same thing. We did start out trying to put all that informationon a sticky note before sticking it to the wall. It slowed us down and we had tostand closer to the wall in order to read it. It was better to quickly get theactivities, tasks, and sub-tasks down and organized by the user so we couldtalk about the stories. If something didn’t make sense, we just threw it awayand wrote a new one. Pretty simple. Now that we have our story map taking shapehow do we decide what to work on first?Firing a Tracer BulletI find the best way to get started is to “fire a tracer bullet” through thesystem. It is a technique to identify the end-to-end path that quickly providesvalue. It’s not the same as an MVP or even a release. It allows the team to buildthe skeleton of the application and then start hanging things from it. This approachhelps mitigate risk. If a problem is encountered with the architecture it’sdiscovered early making it easier to pivot. Implementing the tracer bullet pathmay take multiple sprints, but I’ve found it is the quickest way to early success.Ok no surprise that the tracer bullet covers the top line of the sub-tasks, butI did pull down some sub-tasks that I think are not essential in finding theskeleton of our app. I also moved the “Open Resume” sub-task up beside “Reviewapplicant work experience”. I think it’s important to figure out early on how toupload and open files. I actually thought just leaving “Open Resume” because theresume should have all the details that the Hiring Manager needs to make adecision.Tip from the Trench: I’m not kidding about providing value as fast as possible.About a year ago I was asked to give my opinion on another state agency’smodernization project. They were thinking of hiring a large consulting firm to dothe work. This firm was all about moving the project to the cloud. I sat in apresentation going over the planned work. It was all about the tooling the cloudprovider uh.. provided. There was weeks of work just to get the developers workingin the cloud. Nowhere was there mention of what business value existed at the endof 3 months of work. A colleague of mine pointed that out and the firm was not hired.Even when trying new technology you must always provide value that the business can see.Next StepsUsually at this point, the team would look at the tracer bullet stories and startestimating them and begin sprint planning. Since I’m a team of oneI’m going to move forward with event storming and maybe some event modeling.References and Tools  The New Backlog  User Stories  How to Write a Good User Story: with Examples &amp; Templates  Tracer Bullets">
+    <meta itemprop="datePublished" content="2020-10-09T09:30:30-04:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Story Mapping the Job Board
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#what-is-a-story-map">What is a Story Map</a></li>
+  <li><a href="#why-do-a-story-map">Why do a Story Map?</a></li>
+  <li><a href="#building-the-story-map">Building the Story Map</a></li>
+  <li><a href="#firing-a-tracer-bullet">Firing a Tracer Bullet</a></li>
+  <li><a href="#next-steps">Next Steps</a></li>
+  <li><a href="#references-and-tools">References and Tools</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>Now that the detour is over, we can focus on creating a story map for the job
+board. Story mapping has been around for years, but I am still surprised by the
+number of people I work with who have never heard of it. So let’s recap.</p>
+
+<h2 id="what-is-a-story-map">What is a Story Map</h2>
+<p>A story map is a collaborative planning tool that allows you to break down user
+stories in a two dimensional format. Jeff Patton came up with the technique to
+help those living in backlog hell. It’s an easy concept to grasp, you place
+stories in a line from left to right to capture linear flow through your
+application (or system). Big stories that are too big to get done in a sprint go
+at the top and are the <strong>User Activities</strong>. Below this line of big stories are
+smaller stories that break down the User Activities into <strong>User Tasks</strong>. Then
+underneath the User Tasks are <strong>Sub-Tasks</strong>. The sub-tasks become the stories
+that you implement and are estimated by the team.</p>
+
+<h2 id="why-do-a-story-map">Why do a Story Map?</h2>
+<p>It gives you visibility into the work that needs to be done. It allows you to
+“fire a tracer bullet” through the work you are planning. That tracer bullet
+lets you figure out what would provide the most value in the shortest amount of
+time. Drawing horizontal lines through the map you can group the sub-tasks into
+planned releases or sprints.</p>
+
+<p class="notice--info"><strong>This stuff works:</strong> In April of 2018 my team was given a new project. The
+requirements were based on new laws being enacted by the State’s Legislature and
+the laws mandated that the citizenry would be able fulfill legal obligations
+on-line starting January 1, 2019. So we had a hard deadline and a new business
+domain the team knew nothing about. I introduced the idea of building a
+story map and we walked through the requirements with the analysts and the
+client. We peppered a wall with different colored sticky notes and after a lot
+of work had a nearly complete story map covering two walls of a conference room.
+After doing this, we realized there was no way we would be done on time. Working
+together with blue masking tape, we divided and grouped the sub-tasks until we
+identified what absolutely had to be there on day 1 (our MVP) and what could
+follow in subsequent releases. Working together created a shared understanding,
+got buy-in from all the stakeholders, and we successfully released the application
+at the end of December 2018.</p>
+
+<h2 id="building-the-story-map">Building the Story Map</h2>
+<p>So to build out the map let’s review the
+<a href="/astd/microservices/detour-to-personas-and-journeys/">user journeys</a> and
+try to find some common themes or groupings.</p>
+
+<p><img src="/astd/assets/images/journey/ken-journey-grouped.png" alt="" srcset="            /astd/assets/images/resized/480/ken-journey-grouped.png 480w,            /astd/assets/images/resized/800/ken-journey-grouped.png 800w,            /astd/assets/images/resized/1400/ken-journey-grouped.png 1400w,    " /></p>
+
+<p><img src="/astd/assets/images/journey/sarah-journey-grouped.png" alt="" srcset="            /astd/assets/images/resized/480/sarah-journey-grouped.png 480w,            /astd/assets/images/resized/800/sarah-journey-grouped.png 800w,            /astd/assets/images/resized/1400/sarah-journey-grouped.png 1400w,    " /></p>
+
+<p>Now if we take those groupings we can revise the user journeys:</p>
+
+<p><img src="/astd/assets/images/journey/revised-user-journey.png" alt="" srcset="            /astd/assets/images/resized/480/revised-user-journey.png 480w,            /astd/assets/images/resized/800/revised-user-journey.png 800w,            /astd/assets/images/resized/1400/revised-user-journey.png 1400w,    " /></p>
+
+<p>Notice how they both have a Join activity they will need to perform, but it’s
+happening at different times. There is nothing to constrain Ken from joining the
+job board when he is ready to apply, but Sarah needs to join before she does
+anything. To make things easier let’s change Ken’s Journey to align with Sarah’s.</p>
+
+<p><img src="/astd/assets/images/journey/aligned-user-journey.png" alt="" srcset="            /astd/assets/images/resized/480/aligned-user-journey.png 480w,            /astd/assets/images/resized/800/aligned-user-journey.png 800w,            /astd/assets/images/resized/1400/aligned-user-journey.png 1400w,    " /></p>
+
+<p>That’s better! The blue sticky notes of the journey represent the User
+Activities of our story map. The items that were grouped together are a
+good starting point for the User Tasks. Let’s see how it looks:</p>
+
+<p><img src="/astd/assets/images/journey/story-map-phase1.png" alt="" srcset="            /astd/assets/images/resized/480/story-map-phase1.png 480w,            /astd/assets/images/resized/800/story-map-phase1.png 800w,            /astd/assets/images/resized/1400/story-map-phase1.png 1400w,    " /></p>
+
+<p>This is looking good so far. We have a reasonable linear flow through the
+application and we’ve identified who is doing what and when. Is this perfect? No.
+Ken could login and register after he has already found a job to apply to, but
+<strong>it is</strong> reasonable. You will find that when story mapping there are times when some
+activities can be performed by different users at different times or other
+issues. That’s when the team needs to have conversations and discuss the stories
+and come to a <strong>shared understanding</strong>. Under each of the User Tasks we can
+define the User Sub-Tasks. The sub-tasks are those things the user can do to
+complete the User Task.</p>
+
+<p><img src="/astd/assets/images/journey/story-map-phase2.png" alt="" srcset="            /astd/assets/images/resized/480/story-map-phase2.png 480w,            /astd/assets/images/resized/800/story-map-phase2.png 800w,            /astd/assets/images/resized/1400/story-map-phase2.png 1400w,    " /></p>
+
+<p>Now the sub-tasks are added under their respective user tasks. I should note
+that the sub-tasks, in fact tasks and activities as well, can be written more formally as
+stories using <em>As a [type of user], I want [an action] so that [a value]</em>. It’s
+pretty simple and I really like writing stories in this notation. So why didn’t
+I? First, trying to show formal user stories on all the
+sticky notes in my diagram would make it hard to read. Second, in real life
+my team found out the same thing. We did start out trying to put all that information
+on a sticky note before sticking it to the wall. It slowed us down and we had to
+stand closer to the wall in order to read it. It was better to quickly get the
+activities, tasks, and sub-tasks down and organized by the user so we could
+<em>talk</em> about the stories. If something didn’t make sense, we just threw it away
+and wrote a new one. Pretty simple. Now that we have our story map taking shape
+how do we decide what to work on first?</p>
+
+<h2 id="firing-a-tracer-bullet">Firing a Tracer Bullet</h2>
+<p>I find the best way to get started is to “fire a tracer bullet” through the
+system. It is a technique to identify the end-to-end path that quickly provides
+value. It’s not the same as an MVP or even a release. It allows the team to build
+the skeleton of the application and then start hanging things from it. This approach
+helps mitigate risk. If a problem is encountered with the architecture it’s
+discovered early making it easier to pivot. Implementing the tracer bullet path
+may take multiple sprints, but I’ve found it is the quickest way to early success.</p>
+
+<p><img src="/astd/assets/images/journey/story-map-phase3.png" alt="" srcset="            /astd/assets/images/resized/480/story-map-phase3.png 480w,            /astd/assets/images/resized/800/story-map-phase3.png 800w,            /astd/assets/images/resized/1400/story-map-phase3.png 1400w,    " /></p>
+
+<p>Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but
+I did pull down some sub-tasks that I think are not essential in finding the
+skeleton of our app. I also moved the “Open Resume” sub-task up beside “Review
+applicant work experience”. I think it’s important to figure out early on how to
+upload and open files. I actually thought just leaving “Open Resume” because the
+resume should have all the details that the Hiring Manager needs to make a
+decision.</p>
+
+<p class="notice--info"><strong>Tip from the Trench:</strong> I’m not kidding about providing value as fast as possible.
+About a year ago I was asked to give my opinion on another state agency’s
+modernization project. They were thinking of hiring a large consulting firm to do
+the work. This firm was all about moving the project to the cloud. I sat in a
+presentation going over the planned work. It was all about the tooling the cloud
+provider uh.. provided. There was weeks of work just to get the developers working
+in the cloud. Nowhere was there mention of what business value existed at the end
+of 3 months of work. A colleague of mine pointed that out and the firm was not hired.
+Even when trying new technology you must always provide value that the business can see.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+<p>Usually at this point, the team would look at the tracer bullet stories and start
+estimating them and begin sprint planning. Since I’m a team of one
+I’m going to move forward with event storming and maybe some event modeling.</p>
+
+<h2 id="references-and-tools">References and Tools</h2>
+<ul>
+  <li><a href="https://www.jpattonassociates.com/the-new-backlog/">The New Backlog</a></li>
+  <li><a href="https://www.mountaingoatsoftware.com/agile/user-stories">User Stories</a></li>
+  <li><a href="https://www.stormotion.io/blog/how-to-write-a-good-user-story-with-examples-templates/">How to Write a Good User Story: with Examples &amp; Templates</a></li>
+  <li><a href="https://builtin.com/software-engineering-perspectives/what-are-tracer-bullets">Tracer Bullets</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/astd/tags/#story-mapping" class="page__taxonomy-item" rel="tag">Story Mapping</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/astd/categories/#microservices" class="page__taxonomy-item" rel="tag">Microservices</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-09T09:30:30-04:00">October 9, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Story+Mapping+the+Job+Board%20https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fstory-mapping-the-job-board%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fstory-mapping-the-job-board%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvisualizeit-consulting.github.io%2Fastd%2Fmicroservices%2Fstory-mapping-the-job-board%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/astd/microservices/detour-to-personas-and-journeys/" class="pagination--pager" title="A Detour to Personas and Journeys
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/microservices/detour-to-personas-and-journeys/" rel="permalink">A Detour to Personas and Journeys
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">So I might have gotten a little ahead of myself. I meant this post to be about story mapping the job board application. When I sat down to do that, I realize...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/microservices/job-req-application/" rel="permalink">The CQRS+ES Job Application Tracker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one i...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/microservices/downtimes-no-fun/" rel="permalink">Downtime’s no fun - Time to build
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/astd/team/coming-up-for-air/" rel="permalink">Coming up for air
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">I’ve been wanting to start a blog for the last 5 years, but there has always been stuff to do, that at the time, seemed more important. I finally feel like I...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://linkedin.com" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    <li><a href="/astd/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Andy Whitaker. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/astd/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/astd/assets/js/lunr/lunr.min.js"></script>
+<script src="/astd/assets/js/lunr/lunr-store.js"></script>
+<script src="/astd/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

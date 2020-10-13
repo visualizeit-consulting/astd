@@ -15,7 +15,12 @@ var store = [{
         "url": "https://visualizeit-consulting.github.io/astd/microservices/job-req-application/",
         "teaser":null},{
         "title": "A Detour to Personas and Journeys",
-        "excerpt":"So I might have gotten a little ahead of myself. I meant this post to be about story mapping the job board application. When I sat down to that, I realized I left off a couple of other steps that should/could to be done prior to creating a Story Map....","categories": ["Microservices"],
+        "excerpt":"So I might have gotten a little ahead of myself. I meant this post to be about story mapping the job board application. When I sat down to do that, I realized I left off a couple of other steps that should/could to be done prior to creating a Story...","categories": ["Microservices"],
         "tags": ["Story Mapping","UX"],
         "url": "https://visualizeit-consulting.github.io/astd/microservices/detour-to-personas-and-journeys/",
+        "teaser":null},{
+        "title": "Story Mapping the Job Board",
+        "excerpt":"Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap. What is a...","categories": ["Microservices"],
+        "tags": ["Story Mapping"],
+        "url": "https://visualizeit-consulting.github.io/astd/microservices/story-mapping-the-job-board/",
         "teaser":null}]
