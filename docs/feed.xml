@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://visualizeit-consulting.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://visualizeit-consulting.com/" rel="alternate" type="text/html" /><updated>2020-10-15T10:38:13-04:00</updated><id>https://visualizeit-consulting.com/feed.xml</id><title type="html">Always Stuff to Do</title><subtitle>The adventures of a software developer leading a team discovering the power of Domain Driven Design coupled with Event Sourced Microservices.</subtitle><author><name>Andy Whitaker</name><email>astd@visualizeit-consulting.com</email></author><entry><title type="html">Story Mapping the Job Board</title><link href="https://visualizeit-consulting.com/microservices/story-mapping-the-job-board/" rel="alternate" type="text/html" title="Story Mapping the Job Board" /><published>2020-10-09T09:30:30-04:00</published><updated>2020-10-09T09:30:30-04:00</updated><id>https://visualizeit-consulting.com/microservices/story-mapping-the-job-board</id><content type="html" xml:base="https://visualizeit-consulting.com/microservices/story-mapping-the-job-board/">&lt;p&gt;Now that the detour is over, we can focus on creating a story map for the job
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://visualizeit-consulting.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://visualizeit-consulting.com/" rel="alternate" type="text/html" /><updated>2020-10-20T13:43:17-04:00</updated><id>https://visualizeit-consulting.com/feed.xml</id><title type="html">Always Stuff to Do</title><subtitle>The adventures of a software developer leading a team discovering the power of Domain Driven Design coupled with Event Sourced Microservices.</subtitle><author><name>Andy Whitaker</name><email>astd@visualizeit-consulting.com</email></author><entry><title type="html">Story Mapping the Job Board</title><link href="https://visualizeit-consulting.com/microservices/story-mapping-the-job-board/" rel="alternate" type="text/html" title="Story Mapping the Job Board" /><published>2020-10-09T09:30:30-04:00</published><updated>2020-10-09T09:30:30-04:00</updated><id>https://visualizeit-consulting.com/microservices/story-mapping-the-job-board</id><content type="html" xml:base="https://visualizeit-consulting.com/microservices/story-mapping-the-job-board/">&lt;p&gt;Now that the detour is over, we can focus on creating a story map for the job
 board. Story mapping has been around for years, but I am still surprised by the
 number of people I work with who have never heard of it. So let’s recap.&lt;/p&gt;
 
@@ -40,26 +40,26 @@ at the end of December 2018.&lt;/p&gt;
 &lt;a href=&quot;/microservices/detour-to-personas-and-journeys/&quot;&gt;user journeys&lt;/a&gt; and
 try to find some common themes or groupings.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/ken-journey-grouped.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/ken-journey-grouped.png 480w,            /astd/assets/images/resized/800/ken-journey-grouped.png 800w,            /astd/assets/images/resized/1400/ken-journey-grouped.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/ken-journey-grouped.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/ken-journey-grouped.png 480w,            /assets/images/resized/800/ken-journey-grouped.png 800w,            /assets/images/resized/1400/ken-journey-grouped.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/sarah-journey-grouped.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/sarah-journey-grouped.png 480w,            /astd/assets/images/resized/800/sarah-journey-grouped.png 800w,            /astd/assets/images/resized/1400/sarah-journey-grouped.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/sarah-journey-grouped.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/sarah-journey-grouped.png 480w,            /assets/images/resized/800/sarah-journey-grouped.png 800w,            /assets/images/resized/1400/sarah-journey-grouped.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now if we take those groupings we can revise the user journeys:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/revised-user-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/revised-user-journey.png 480w,            /astd/assets/images/resized/800/revised-user-journey.png 800w,            /astd/assets/images/resized/1400/revised-user-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/revised-user-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/revised-user-journey.png 480w,            /assets/images/resized/800/revised-user-journey.png 800w,            /assets/images/resized/1400/revised-user-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Notice how they both have a Join activity they will need to perform, but it’s
 happening at different times. There is nothing to constrain Ken from joining the
 job board when he is ready to apply, but Sarah needs to join before she does
 anything. To make things easier let’s change Ken’s Journey to align with Sarah’s.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/aligned-user-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/aligned-user-journey.png 480w,            /astd/assets/images/resized/800/aligned-user-journey.png 800w,            /astd/assets/images/resized/1400/aligned-user-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/aligned-user-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/aligned-user-journey.png 480w,            /assets/images/resized/800/aligned-user-journey.png 800w,            /assets/images/resized/1400/aligned-user-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;That’s better! The blue sticky notes of the journey represent the User
 Activities of our story map. The items that were grouped together are a
 good starting point for the User Tasks. Let’s see how it looks:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/story-map-phase1.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/story-map-phase1.png 480w,            /astd/assets/images/resized/800/story-map-phase1.png 800w,            /astd/assets/images/resized/1400/story-map-phase1.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/story-map-phase1.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/story-map-phase1.png 480w,            /assets/images/resized/800/story-map-phase1.png 800w,            /assets/images/resized/1400/story-map-phase1.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is looking good so far. We have a reasonable linear flow through the
 application and we’ve identified who is doing what and when. Is this perfect? No.
@@ -71,7 +71,7 @@ and come to a &lt;strong&gt;shared understanding&lt;/strong&gt;. Under each of t
 define the User Sub-Tasks. The sub-tasks are those things the user can do to
 complete the User Task.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/story-map-phase2.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/story-map-phase2.png 480w,            /astd/assets/images/resized/800/story-map-phase2.png 800w,            /astd/assets/images/resized/1400/story-map-phase2.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/story-map-phase2.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/story-map-phase2.png 480w,            /assets/images/resized/800/story-map-phase2.png 800w,            /assets/images/resized/1400/story-map-phase2.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Now the sub-tasks are added under their respective user tasks. I should note
 that the sub-tasks, in fact tasks and activities as well, can be written more formally as
@@ -96,7 +96,7 @@ helps mitigate risk. If a problem is encountered with the architecture it’s
 discovered early making it easier to pivot. Implementing the tracer bullet path
 may take multiple sprints, but I’ve found it is the quickest way to early success.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/story-map-phase3.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/story-map-phase3.png 480w,            /astd/assets/images/resized/800/story-map-phase3.png 800w,            /astd/assets/images/resized/1400/story-map-phase3.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/story-map-phase3.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/story-map-phase3.png 480w,            /assets/images/resized/800/story-map-phase3.png 800w,            /assets/images/resized/1400/story-map-phase3.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Ok no surprise that the tracer bullet covers the top line of the sub-tasks, but
 I did pull down some sub-tasks that I think are not essential in finding the
@@ -145,16 +145,16 @@ data and demographics and try to put yourself in other people’s shoes. You the
 
 &lt;p&gt;Being a team of one and trying to keep things simple, I’ve created two personas: Ken, our job seeker, and Sarah a hiring manager.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/user-persona-cards.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/user-persona-cards.png 480w,            /astd/assets/images/resized/800/user-persona-cards.png 800w,            /astd/assets/images/resized/1400/user-persona-cards.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/user-persona-cards.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/user-persona-cards.png 480w,            /assets/images/resized/800/user-persona-cards.png 800w,            /assets/images/resized/1400/user-persona-cards.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;I didn’t go into a lot of details on their background or personalities, but I think it’s enough to help drive out what the job board needs to do.&lt;/p&gt;
 
 &lt;h2 id=&quot;mapping-a-users-journey&quot;&gt;Mapping a User’s Journey&lt;/h2&gt;
 &lt;p&gt;Now that we have some personas, we can map out their respective journeys. Again, there is a lot to do here in order to do it right. I found several different examples on how to map a journey. Several involve mapping the user not only using an application, but what they are doing and feeling before and after using it. I really like this idea because it focuses on &lt;strong&gt;outcomes&lt;/strong&gt; for the user and those outcomes generally happen in the real world. However, I kept it simple again and just focused on the journey through the job board. These journeys are not very complex and are too simple for a real world job board, but I think they will serve my purpose for now.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/ken-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/ken-journey.png 480w,            /astd/assets/images/resized/800/ken-journey.png 800w,            /astd/assets/images/resized/1400/ken-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/ken-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/ken-journey.png 480w,            /assets/images/resized/800/ken-journey.png 800w,            /assets/images/resized/1400/ken-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/astd/assets/images/journey/sarah-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /astd/assets/images/resized/480/sarah-journey.png 480w,            /astd/assets/images/resized/800/sarah-journey.png 800w,            /astd/assets/images/resized/1400/sarah-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/journey/sarah-journey.png&quot; alt=&quot;&quot; srcset=&quot;            /assets/images/resized/480/sarah-journey.png 480w,            /assets/images/resized/800/sarah-journey.png 800w,            /assets/images/resized/1400/sarah-journey.png 1400w,    &quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Ken’s journey starts with seeing a list of job postings that he can search. If he finds one that’s interesting he can view the complete post and choose to apply. Only then does he need to login (and register if it’s his first time).&lt;/p&gt;
 
