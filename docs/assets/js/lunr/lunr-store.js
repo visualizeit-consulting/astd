@@ -23,4 +23,9 @@ var store = [{
         "excerpt":"Now that the detour is over, we can focus on creating a story map for the job board. Story mapping has been around for years, but I am still surprised by the number of people I work with who have never heard of it. So let’s recap. What is a...","categories": ["Microservices"],
         "tags": ["Story Mapping"],
         "url": "https://visualizeit-consulting.com/microservices/story-mapping-the-job-board/",
+        "teaser":null},{
+        "title": "Event Storming to Find the Domain",
+        "excerpt":"Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts. What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding...","categories": ["DDD"],
+        "tags": ["Event Storming","Story Mapping"],
+        "url": "https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/",
         "teaser":null}]

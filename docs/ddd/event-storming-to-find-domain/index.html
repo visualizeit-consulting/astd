@@ -1,0 +1,856 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.18.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Event Storming to Find the Domain - Always Stuff to Do</title>
+<meta name="description" content="Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts.  What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding domain events. You generally work with a small group of domain experts and focus on what happens as users interact with the application. Events are captured in domain terms and the collaborative nature of the workshop builds a shared understanding of the domain and what needs to be built.  Since I’m still a team of one I’m not running a workshop. I’m going to do my best to simulate the process and walk through the steps of event storming and the follow on activities.  The Story Map In the previous post on story mapping we discussed taking the user journey and building a story map. We ended that post by firing a tracer bullet through a set of stories that provided value and created the backbone for the entire application. Here is what it looked like:            The Story Map w/Tracer Bullet   Clear the Map Everything below the stories identified by the tracer bullet is possible future work. I’m going to clear them off along with our tracer bullet so we can focus on our stories.           The map is cleared   Why do I clear the map? Because I don’t want to think about the future work. Isn’t the future work important to think about? Yes and No. Hopefully,through collaboration, everyone on the team has an understanding of where things are headed, but I have found that if you leave everything on the map during event storming the team will begin to try to squeeze in things that may (or may not) come later. This can lead to over engineering and delays. What you should be focused on is providing value as quickly as possible to the customer.  Identify the Command and Query Stories Now that we have our tracer bullet stories in isolation we should recognize that there are two kinds of stories.    Stories that change the system (Command)   Stories that query the system (Query)   Command stories change the system and produce domain events. Query stories view the state of the system in different ways. By having these two types of stories, we are following the pattern of Command and Query Responsibility Segregation (CQRS). If you find a user sub-task story that seems to do both (change the system while viewing its state), you should analyze it and break it down into two or more Command and Query stories. Going back to the story map, I’ve put a red circle around the Command stories and blue circles around the Query stories.              Identified the Command and Query stories   Storm the Events Now comes the fun part. We get to think about the Command stories and what kind of events would be produced by each story. Some things to keep in mind.    Collaborate - This is a team effort   Use words from the domain   Events are things that happened, so use the past tense.   More than 1 event can be produced.   The same event can be produced by two separate stories   I worked through the story map and decided on the following events:    User Registered   User Logged In   Job Posted   Application Started   Work Experience Added   Resume Attached   Application Completed   Applicant Contacted   So we can see that the words of the domain are starting to emerge. I chose to use the word Applicant for the person applying to a job. I thought about using the term Job Seeker, but stuck with words that were more closely tied to the action of applying. Application Started and Completed came out of some brain storming. The applicant should be able to add multiple work experiences and attach a resume and change their mind and attache a different resume and then complete the application. I think the logical thing would be to have an event that signifies the start of the process. Going back to the story map I placed the events under their respective stories:             Events are added to the map   Work Backwards to Commands We have the events, so now we need to figure out what commands trigger the events. Starting with the event, we think about what command would logically create it. Some things to remember when doing this:     Commands do not have to follow the same name as the event.   Commands are in the present tense   Different commands may produce the same event   Not all Commands are from a user or through user interaction   Here are the commands I came up with:     Register User   Log In   Apply to Job   Enter Work Experience   Attach Resume   Complete Application   Contact Applicant   In practice, I like to put the events on a white board next to the command(s) that generate them.             Commands next to their events   Identify the Bounded Contexts Now that the commands and events have been identified they can be grouped together into cohesive sets. For example, the registration and login command and events can be grouped together as they are directly related to the user. The commands and events pertaining to applying for a job can be grouped together leaving the ones associated with posting a new job together by themselves. Grouping them together this way helps to identify the bounded contexts. The bounded contexts can then be given names from the domain.              Identifying the Bounded Contexts   We have found our events, commands, and identified our bounded contexts. But what about those other stories? The query ones? Is there anything we can do with those?  Examine the Query Stories The query stories describe the views or how users see the system. In our system these views will be built from the events. We now know the events, so lets take another look at these stories.             The Query Stories   Determine the Query Building Events Not all the events will be used to populate the query views. We can start by trying to determine which events will contain the data required by the views. I took a shot at this and came up with:             Assigning events to the query stories   Unfortunately we still don’t have any idea of what kind of data will be needed by the views. In turn that means we don’t know what kind of data will need to be supplied by the events. How do we solve this?  UX Helps Identify the Data An effective way of solving the problem is to use wireframes of the user interface. I don’t have a UX expert working on this (which I highly recommend) but I can make some reasonable guesses. By putting the wireframes in order over the stories it becomes easier to see how a user will interact with the application and what kind of data they will need.             UX wireframes help us find the data   Now it becomes easy to see the kind of data the events need to provide which in turn dictates the kind of data the commands need to contain. Next up we will dig further into this when we discover our aggregates and design our events.  References and Tools    Introducing Event Storming   How to Use Event Storming  ">
+
+
+  <meta name="author" content="Andy Whitaker">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Always Stuff to Do">
+<meta property="og:title" content="Event Storming to Find the Domain">
+<meta property="og:url" content="https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/">
+
+
+  <meta property="og:description" content="Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts.  What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding domain events. You generally work with a small group of domain experts and focus on what happens as users interact with the application. Events are captured in domain terms and the collaborative nature of the workshop builds a shared understanding of the domain and what needs to be built.  Since I’m still a team of one I’m not running a workshop. I’m going to do my best to simulate the process and walk through the steps of event storming and the follow on activities.  The Story Map In the previous post on story mapping we discussed taking the user journey and building a story map. We ended that post by firing a tracer bullet through a set of stories that provided value and created the backbone for the entire application. Here is what it looked like:            The Story Map w/Tracer Bullet   Clear the Map Everything below the stories identified by the tracer bullet is possible future work. I’m going to clear them off along with our tracer bullet so we can focus on our stories.           The map is cleared   Why do I clear the map? Because I don’t want to think about the future work. Isn’t the future work important to think about? Yes and No. Hopefully,through collaboration, everyone on the team has an understanding of where things are headed, but I have found that if you leave everything on the map during event storming the team will begin to try to squeeze in things that may (or may not) come later. This can lead to over engineering and delays. What you should be focused on is providing value as quickly as possible to the customer.  Identify the Command and Query Stories Now that we have our tracer bullet stories in isolation we should recognize that there are two kinds of stories.    Stories that change the system (Command)   Stories that query the system (Query)   Command stories change the system and produce domain events. Query stories view the state of the system in different ways. By having these two types of stories, we are following the pattern of Command and Query Responsibility Segregation (CQRS). If you find a user sub-task story that seems to do both (change the system while viewing its state), you should analyze it and break it down into two or more Command and Query stories. Going back to the story map, I’ve put a red circle around the Command stories and blue circles around the Query stories.              Identified the Command and Query stories   Storm the Events Now comes the fun part. We get to think about the Command stories and what kind of events would be produced by each story. Some things to keep in mind.    Collaborate - This is a team effort   Use words from the domain   Events are things that happened, so use the past tense.   More than 1 event can be produced.   The same event can be produced by two separate stories   I worked through the story map and decided on the following events:    User Registered   User Logged In   Job Posted   Application Started   Work Experience Added   Resume Attached   Application Completed   Applicant Contacted   So we can see that the words of the domain are starting to emerge. I chose to use the word Applicant for the person applying to a job. I thought about using the term Job Seeker, but stuck with words that were more closely tied to the action of applying. Application Started and Completed came out of some brain storming. The applicant should be able to add multiple work experiences and attach a resume and change their mind and attache a different resume and then complete the application. I think the logical thing would be to have an event that signifies the start of the process. Going back to the story map I placed the events under their respective stories:             Events are added to the map   Work Backwards to Commands We have the events, so now we need to figure out what commands trigger the events. Starting with the event, we think about what command would logically create it. Some things to remember when doing this:     Commands do not have to follow the same name as the event.   Commands are in the present tense   Different commands may produce the same event   Not all Commands are from a user or through user interaction   Here are the commands I came up with:     Register User   Log In   Apply to Job   Enter Work Experience   Attach Resume   Complete Application   Contact Applicant   In practice, I like to put the events on a white board next to the command(s) that generate them.             Commands next to their events   Identify the Bounded Contexts Now that the commands and events have been identified they can be grouped together into cohesive sets. For example, the registration and login command and events can be grouped together as they are directly related to the user. The commands and events pertaining to applying for a job can be grouped together leaving the ones associated with posting a new job together by themselves. Grouping them together this way helps to identify the bounded contexts. The bounded contexts can then be given names from the domain.              Identifying the Bounded Contexts   We have found our events, commands, and identified our bounded contexts. But what about those other stories? The query ones? Is there anything we can do with those?  Examine the Query Stories The query stories describe the views or how users see the system. In our system these views will be built from the events. We now know the events, so lets take another look at these stories.             The Query Stories   Determine the Query Building Events Not all the events will be used to populate the query views. We can start by trying to determine which events will contain the data required by the views. I took a shot at this and came up with:             Assigning events to the query stories   Unfortunately we still don’t have any idea of what kind of data will be needed by the views. In turn that means we don’t know what kind of data will need to be supplied by the events. How do we solve this?  UX Helps Identify the Data An effective way of solving the problem is to use wireframes of the user interface. I don’t have a UX expert working on this (which I highly recommend) but I can make some reasonable guesses. By putting the wireframes in order over the stories it becomes easier to see how a user will interact with the application and what kind of data they will need.             UX wireframes help us find the data   Now it becomes easy to see the kind of data the events need to provide which in turn dictates the kind of data the commands need to contain. Next up we will dig further into this when we discover our aggregates and design our events.  References and Tools    Introducing Event Storming   How to Use Event Storming  ">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-10-20T09:30:30-04:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Andy Whitaker",
+      "url": "https://visualizeit-consulting.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Always Stuff to Do Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Event Storming to Find the Domain | Always Stuff to Do</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Event Storming to Find the Domain" />
+<meta name="author" content="Andy Whitaker" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts. What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding domain events. You generally work with a small group of domain experts and focus on what happens as users interact with the application. Events are captured in domain terms and the collaborative nature of the workshop builds a shared understanding of the domain and what needs to be built. Since I’m still a team of one I’m not running a workshop. I’m going to do my best to simulate the process and walk through the steps of event storming and the follow on activities. The Story Map In the previous post on story mapping we discussed taking the user journey and building a story map. We ended that post by firing a tracer bullet through a set of stories that provided value and created the backbone for the entire application. Here is what it looked like: The Story Map w/Tracer Bullet Clear the Map Everything below the stories identified by the tracer bullet is possible future work. I’m going to clear them off along with our tracer bullet so we can focus on our stories. The map is cleared Why do I clear the map? Because I don’t want to think about the future work. Isn’t the future work important to think about? Yes and No. Hopefully,through collaboration, everyone on the team has an understanding of where things are headed, but I have found that if you leave everything on the map during event storming the team will begin to try to squeeze in things that may (or may not) come later. This can lead to over engineering and delays. What you should be focused on is providing value as quickly as possible to the customer. Identify the Command and Query Stories Now that we have our tracer bullet stories in isolation we should recognize that there are two kinds of stories. Stories that change the system (Command) Stories that query the system (Query) Command stories change the system and produce domain events. Query stories view the state of the system in different ways. By having these two types of stories, we are following the pattern of Command and Query Responsibility Segregation (CQRS). If you find a user sub-task story that seems to do both (change the system while viewing its state), you should analyze it and break it down into two or more Command and Query stories. Going back to the story map, I’ve put a red circle around the Command stories and blue circles around the Query stories. Identified the Command and Query stories Storm the Events Now comes the fun part. We get to think about the Command stories and what kind of events would be produced by each story. Some things to keep in mind. Collaborate - This is a team effort Use words from the domain Events are things that happened, so use the past tense. More than 1 event can be produced. The same event can be produced by two separate stories I worked through the story map and decided on the following events: User Registered User Logged In Job Posted Application Started Work Experience Added Resume Attached Application Completed Applicant Contacted So we can see that the words of the domain are starting to emerge. I chose to use the word Applicant for the person applying to a job. I thought about using the term Job Seeker, but stuck with words that were more closely tied to the action of applying. Application Started and Completed came out of some brain storming. The applicant should be able to add multiple work experiences and attach a resume and change their mind and attache a different resume and then complete the application. I think the logical thing would be to have an event that signifies the start of the process. Going back to the story map I placed the events under their respective stories: Events are added to the map Work Backwards to Commands We have the events, so now we need to figure out what commands trigger the events. Starting with the event, we think about what command would logically create it. Some things to remember when doing this: Commands do not have to follow the same name as the event. Commands are in the present tense Different commands may produce the same event Not all Commands are from a user or through user interaction Here are the commands I came up with: Register User Log In Apply to Job Enter Work Experience Attach Resume Complete Application Contact Applicant In practice, I like to put the events on a white board next to the command(s) that generate them. Commands next to their events Identify the Bounded Contexts Now that the commands and events have been identified they can be grouped together into cohesive sets. For example, the registration and login command and events can be grouped together as they are directly related to the user. The commands and events pertaining to applying for a job can be grouped together leaving the ones associated with posting a new job together by themselves. Grouping them together this way helps to identify the bounded contexts. The bounded contexts can then be given names from the domain. Identifying the Bounded Contexts We have found our events, commands, and identified our bounded contexts. But what about those other stories? The query ones? Is there anything we can do with those? Examine the Query Stories The query stories describe the views or how users see the system. In our system these views will be built from the events. We now know the events, so lets take another look at these stories. The Query Stories Determine the Query Building Events Not all the events will be used to populate the query views. We can start by trying to determine which events will contain the data required by the views. I took a shot at this and came up with: Assigning events to the query stories Unfortunately we still don’t have any idea of what kind of data will be needed by the views. In turn that means we don’t know what kind of data will need to be supplied by the events. How do we solve this? UX Helps Identify the Data An effective way of solving the problem is to use wireframes of the user interface. I don’t have a UX expert working on this (which I highly recommend) but I can make some reasonable guesses. By putting the wireframes in order over the stories it becomes easier to see how a user will interact with the application and what kind of data they will need. UX wireframes help us find the data Now it becomes easy to see the kind of data the events need to provide which in turn dictates the kind of data the commands need to contain. Next up we will dig further into this when we discover our aggregates and design our events. References and Tools Introducing Event Storming How to Use Event Storming" />
+<meta property="og:description" content="Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts. What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding domain events. You generally work with a small group of domain experts and focus on what happens as users interact with the application. Events are captured in domain terms and the collaborative nature of the workshop builds a shared understanding of the domain and what needs to be built. Since I’m still a team of one I’m not running a workshop. I’m going to do my best to simulate the process and walk through the steps of event storming and the follow on activities. The Story Map In the previous post on story mapping we discussed taking the user journey and building a story map. We ended that post by firing a tracer bullet through a set of stories that provided value and created the backbone for the entire application. Here is what it looked like: The Story Map w/Tracer Bullet Clear the Map Everything below the stories identified by the tracer bullet is possible future work. I’m going to clear them off along with our tracer bullet so we can focus on our stories. The map is cleared Why do I clear the map? Because I don’t want to think about the future work. Isn’t the future work important to think about? Yes and No. Hopefully,through collaboration, everyone on the team has an understanding of where things are headed, but I have found that if you leave everything on the map during event storming the team will begin to try to squeeze in things that may (or may not) come later. This can lead to over engineering and delays. What you should be focused on is providing value as quickly as possible to the customer. Identify the Command and Query Stories Now that we have our tracer bullet stories in isolation we should recognize that there are two kinds of stories. Stories that change the system (Command) Stories that query the system (Query) Command stories change the system and produce domain events. Query stories view the state of the system in different ways. By having these two types of stories, we are following the pattern of Command and Query Responsibility Segregation (CQRS). If you find a user sub-task story that seems to do both (change the system while viewing its state), you should analyze it and break it down into two or more Command and Query stories. Going back to the story map, I’ve put a red circle around the Command stories and blue circles around the Query stories. Identified the Command and Query stories Storm the Events Now comes the fun part. We get to think about the Command stories and what kind of events would be produced by each story. Some things to keep in mind. Collaborate - This is a team effort Use words from the domain Events are things that happened, so use the past tense. More than 1 event can be produced. The same event can be produced by two separate stories I worked through the story map and decided on the following events: User Registered User Logged In Job Posted Application Started Work Experience Added Resume Attached Application Completed Applicant Contacted So we can see that the words of the domain are starting to emerge. I chose to use the word Applicant for the person applying to a job. I thought about using the term Job Seeker, but stuck with words that were more closely tied to the action of applying. Application Started and Completed came out of some brain storming. The applicant should be able to add multiple work experiences and attach a resume and change their mind and attache a different resume and then complete the application. I think the logical thing would be to have an event that signifies the start of the process. Going back to the story map I placed the events under their respective stories: Events are added to the map Work Backwards to Commands We have the events, so now we need to figure out what commands trigger the events. Starting with the event, we think about what command would logically create it. Some things to remember when doing this: Commands do not have to follow the same name as the event. Commands are in the present tense Different commands may produce the same event Not all Commands are from a user or through user interaction Here are the commands I came up with: Register User Log In Apply to Job Enter Work Experience Attach Resume Complete Application Contact Applicant In practice, I like to put the events on a white board next to the command(s) that generate them. Commands next to their events Identify the Bounded Contexts Now that the commands and events have been identified they can be grouped together into cohesive sets. For example, the registration and login command and events can be grouped together as they are directly related to the user. The commands and events pertaining to applying for a job can be grouped together leaving the ones associated with posting a new job together by themselves. Grouping them together this way helps to identify the bounded contexts. The bounded contexts can then be given names from the domain. Identifying the Bounded Contexts We have found our events, commands, and identified our bounded contexts. But what about those other stories? The query ones? Is there anything we can do with those? Examine the Query Stories The query stories describe the views or how users see the system. In our system these views will be built from the events. We now know the events, so lets take another look at these stories. The Query Stories Determine the Query Building Events Not all the events will be used to populate the query views. We can start by trying to determine which events will contain the data required by the views. I took a shot at this and came up with: Assigning events to the query stories Unfortunately we still don’t have any idea of what kind of data will be needed by the views. In turn that means we don’t know what kind of data will need to be supplied by the events. How do we solve this? UX Helps Identify the Data An effective way of solving the problem is to use wireframes of the user interface. I don’t have a UX expert working on this (which I highly recommend) but I can make some reasonable guesses. By putting the wireframes in order over the stories it becomes easier to see how a user will interact with the application and what kind of data they will need. UX wireframes help us find the data Now it becomes easy to see the kind of data the events need to provide which in turn dictates the kind of data the commands need to contain. Next up we will dig further into this when we discover our aggregates and design our events. References and Tools Introducing Event Storming How to Use Event Storming" />
+<link rel="canonical" href="https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/" />
+<meta property="og:url" content="https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/" />
+<meta property="og:site_name" content="Always Stuff to Do" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-20T09:30:30-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Event Storming to Find the Domain" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Andy Whitaker" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Andy Whitaker"},"description":"Previously we constructed a story map of our job board application and now we are going to use event storming to discover our commands and bounded contexts. What is Event Storming If you are unfamiliar with it, event storming is a collaborative workshop process for discussing user stories and finding domain events. You generally work with a small group of domain experts and focus on what happens as users interact with the application. Events are captured in domain terms and the collaborative nature of the workshop builds a shared understanding of the domain and what needs to be built. Since I’m still a team of one I’m not running a workshop. I’m going to do my best to simulate the process and walk through the steps of event storming and the follow on activities. The Story Map In the previous post on story mapping we discussed taking the user journey and building a story map. We ended that post by firing a tracer bullet through a set of stories that provided value and created the backbone for the entire application. Here is what it looked like: The Story Map w/Tracer Bullet Clear the Map Everything below the stories identified by the tracer bullet is possible future work. I’m going to clear them off along with our tracer bullet so we can focus on our stories. The map is cleared Why do I clear the map? Because I don’t want to think about the future work. Isn’t the future work important to think about? Yes and No. Hopefully,through collaboration, everyone on the team has an understanding of where things are headed, but I have found that if you leave everything on the map during event storming the team will begin to try to squeeze in things that may (or may not) come later. This can lead to over engineering and delays. What you should be focused on is providing value as quickly as possible to the customer. Identify the Command and Query Stories Now that we have our tracer bullet stories in isolation we should recognize that there are two kinds of stories. Stories that change the system (Command) Stories that query the system (Query) Command stories change the system and produce domain events. Query stories view the state of the system in different ways. By having these two types of stories, we are following the pattern of Command and Query Responsibility Segregation (CQRS). If you find a user sub-task story that seems to do both (change the system while viewing its state), you should analyze it and break it down into two or more Command and Query stories. Going back to the story map, I’ve put a red circle around the Command stories and blue circles around the Query stories. Identified the Command and Query stories Storm the Events Now comes the fun part. We get to think about the Command stories and what kind of events would be produced by each story. Some things to keep in mind. Collaborate - This is a team effort Use words from the domain Events are things that happened, so use the past tense. More than 1 event can be produced. The same event can be produced by two separate stories I worked through the story map and decided on the following events: User Registered User Logged In Job Posted Application Started Work Experience Added Resume Attached Application Completed Applicant Contacted So we can see that the words of the domain are starting to emerge. I chose to use the word Applicant for the person applying to a job. I thought about using the term Job Seeker, but stuck with words that were more closely tied to the action of applying. Application Started and Completed came out of some brain storming. The applicant should be able to add multiple work experiences and attach a resume and change their mind and attache a different resume and then complete the application. I think the logical thing would be to have an event that signifies the start of the process. Going back to the story map I placed the events under their respective stories: Events are added to the map Work Backwards to Commands We have the events, so now we need to figure out what commands trigger the events. Starting with the event, we think about what command would logically create it. Some things to remember when doing this: Commands do not have to follow the same name as the event. Commands are in the present tense Different commands may produce the same event Not all Commands are from a user or through user interaction Here are the commands I came up with: Register User Log In Apply to Job Enter Work Experience Attach Resume Complete Application Contact Applicant In practice, I like to put the events on a white board next to the command(s) that generate them. Commands next to their events Identify the Bounded Contexts Now that the commands and events have been identified they can be grouped together into cohesive sets. For example, the registration and login command and events can be grouped together as they are directly related to the user. The commands and events pertaining to applying for a job can be grouped together leaving the ones associated with posting a new job together by themselves. Grouping them together this way helps to identify the bounded contexts. The bounded contexts can then be given names from the domain. Identifying the Bounded Contexts We have found our events, commands, and identified our bounded contexts. But what about those other stories? The query ones? Is there anything we can do with those? Examine the Query Stories The query stories describe the views or how users see the system. In our system these views will be built from the events. We now know the events, so lets take another look at these stories. The Query Stories Determine the Query Building Events Not all the events will be used to populate the query views. We can start by trying to determine which events will contain the data required by the views. I took a shot at this and came up with: Assigning events to the query stories Unfortunately we still don’t have any idea of what kind of data will be needed by the views. In turn that means we don’t know what kind of data will need to be supplied by the events. How do we solve this? UX Helps Identify the Data An effective way of solving the problem is to use wireframes of the user interface. I don’t have a UX expert working on this (which I highly recommend) but I can make some reasonable guesses. By putting the wireframes in order over the stories it becomes easier to see how a user will interact with the application and what kind of data they will need. UX wireframes help us find the data Now it becomes easy to see the kind of data the events need to provide which in turn dictates the kind of data the commands need to contain. Next up we will dig further into this when we discover our aggregates and design our events. References and Tools Introducing Event Storming How to Use Event Storming","@type":"BlogPosting","url":"https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/","dateModified":"2020-10-20T09:30:30-04:00","datePublished":"2020-10-20T09:30:30-04:00","headline":"Event Storming to Find the Domain","mainEntityOfPage":{"@type":"WebPage","@id":"https://visualizeit-consulting.com/ddd/event-storming-to-find-domain/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Always Stuff to Do
+          <span class="site-subtitle">Keeping up in a fast paced world</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/posts/" >Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/" >Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/" >Tags</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="/assets/images/bio-photo.jpg" alt="Andy Whitaker" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Andy Whitaker</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Championing Event Driven Microservices with CQRS+ES and DDD</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Indianapolis, Indiana</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+            <li><a href="https://twitter.com/VisualizeITC" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+          
+        
+          
+            <li><a href="https://github.com/visualizeit-consulting" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/visualizeit-consulting/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:astd@visualizeit-consulting.com">
+            <meta itemprop="email" content="astd@visualizeit-consulting.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Event Storming to Find the Domain">
+    <meta itemprop="description" content="Previously we constructed a story map of our job board application andnow we are going to use event storming to discover our commands andbounded contexts.What is Event StormingIf you are unfamiliar with it, event storming is a collaborative workshopprocess for discussing user stories and finding domain events. You generallywork with a small group of domain experts and focus on what happens as usersinteract with the application. Events are captured in domain terms and thecollaborative nature of the workshop builds a shared understanding of the domainand what needs to be built.Since I’m still a team of one I’m not running a workshop. I’m going to do mybest to simulate the process and walk through the steps of event storming andthe follow on activities.The Story MapIn the previous post on story mappingwe discussed taking the user journey and building a story map. We ended that postby firing a tracer bullet through a set of stories that provided value and createdthe backbone for the entire application. Here is what it looked like:        The Story Map w/Tracer BulletClear the MapEverything below the stories identified by the tracer bullet is possible future work.I’m going to clear them off along with our tracer bullet so we can focus on ourstories.        The map is clearedWhy do I clear the map? Because I don’t want to think about the future work.Isn’t the future work important to think about? Yes and No. Hopefully,throughcollaboration, everyone on the team has an understanding of where things are headed,but I have found that if you leave everything on the map during event storming theteam will begin to try to squeeze in things that may (or may not) come later. Thiscan lead to over engineering and delays. What you should be focused on is providingvalue as quickly as possible to the customer.Identify the Command and Query StoriesNow that we have our tracer bullet stories in isolation we should recognize that thereare two kinds of stories.  Stories that change the system (Command)  Stories that query the system (Query)Command stories change the system and produce domain events.Query stories view the state of the system in different ways.By having these two types of stories, we are following thepattern of Command and Query Responsibility Segregation (CQRS). If youfind a user sub-task story that seems to do both (change the system while viewing its state),you should analyze it and break it down into two or more Command and Query stories.Going back to the story map, I’ve put a red circle around the Command stories and blue circlesaround the Query stories.        Identified the Command and Query storiesStorm the EventsNow comes the fun part. We get to think about the Command stories and what kindof events would be produced by each story. Some things to keep in mind.  Collaborate - This is a team effort  Use words from the domain  Events are things that happened, so use the past tense.  More than 1 event can be produced.  The same event can be produced by two separate storiesI worked through the story map and decided on the following events:  User Registered  User Logged In  Job Posted  Application Started  Work Experience Added  Resume Attached  Application Completed  Applicant ContactedSo we can see that the words of the domain are starting to emerge.I chose to use the word Applicant for the person applying to a job. Ithought about using the term Job Seeker, but stuck with words that weremore closely tied to the action of applying. Application Started andCompleted came out of some brain storming. The applicant should beable to add multiple work experiences and attach a resume and changetheir mind and attache a different resume and then complete theapplication. I think the logical thing would be to have an event thatsignifies the start of the process. Going back to the story mapI placed the events under their respective stories:        Events are added to the mapWork Backwards to CommandsWe have the events, so now we need to figure out what commands triggerthe events. Starting with the event, we think about what command wouldlogically create it. Some things to remember when doing this:  Commands do not have to follow the same name as the event.  Commands are in the present tense  Different commands may produce the same event  Not all Commands are from a user or through user interactionHere are the commands I came up with:  Register User  Log In  Apply to Job  Enter Work Experience  Attach Resume  Complete Application  Contact ApplicantIn practice, I like to put the events on a white board next to the command(s) thatgenerate them.        Commands next to their eventsIdentify the Bounded ContextsNow that the commands and events have been identified they can be grouped togetherinto cohesive sets. For example, the registration and login command and events canbe grouped together as they are directly related to the user. The commands andevents pertaining to applying for a job can be grouped together leaving the onesassociated with posting a new job together by themselves. Grouping them togetherthis way helps to identify the bounded contexts. The bounded contexts can then begiven names from the domain.        Identifying the Bounded ContextsWe have found our events, commands, and identifiedour bounded contexts. But what about those other stories? The query ones? Is thereanything we can do with those?Examine the Query StoriesThe query stories describe the views or how users see the system. In our systemthese views will be built from the events. We now know the events, so lets takeanother look at these stories.        The Query StoriesDetermine the Query Building EventsNot all the events will be used to populate the query views. We can start bytrying to determine which events will contain the data required by the views.I took a shot at this and came up with:        Assigning events to the query storiesUnfortunately we still don’t have any idea of what kind of data will be neededby the views. In turn that means we don’t know what kind of data will need tobe supplied by the events. How do we solve this?UX Helps Identify the DataAn effective way of solving the problem is to use wireframes of the userinterface. I don’t have a UX expert working on this (which I highlyrecommend) but I can make some reasonable guesses. By putting the wireframesin order over the stories it becomes easier to see how a user will interactwith the application and what kind of data they will need.        UX wireframes help us find the dataNow it becomes easy to see the kind of data the events need to provide which inturn dictates the kind of data the commands need to contain. Next up we willdig further into this when we discover our aggregates and design our events.References and Tools  Introducing Event Storming  How to Use Event Storming">
+    <meta itemprop="datePublished" content="2020-10-20T09:30:30-04:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Event Storming to Find the Domain
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#what-is-event-storming">What is Event Storming</a></li>
+  <li><a href="#the-story-map">The Story Map</a></li>
+  <li><a href="#clear-the-map">Clear the Map</a></li>
+  <li><a href="#identify-the-command-and-query-stories">Identify the Command and Query Stories</a></li>
+  <li><a href="#storm-the-events">Storm the Events</a></li>
+  <li><a href="#work-backwards-to-commands">Work Backwards to Commands</a></li>
+  <li><a href="#identify-the-bounded-contexts">Identify the Bounded Contexts</a></li>
+  <li><a href="#examine-the-query-stories">Examine the Query Stories</a></li>
+  <li><a href="#determine-the-query-building-events">Determine the Query Building Events</a></li>
+  <li><a href="#ux-helps-identify-the-data">UX Helps Identify the Data</a></li>
+  <li><a href="#references-and-tools">References and Tools</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>Previously we constructed a story map of our job board application and
+now we are going to use event storming to discover our commands and
+bounded contexts.</p>
+
+<h2 id="what-is-event-storming">What is Event Storming</h2>
+<p>If you are unfamiliar with it, event storming is a collaborative workshop
+process for discussing user stories and finding domain events. You generally
+work with a small group of domain experts and focus on what happens as users
+interact with the application. Events are captured in domain terms and the
+collaborative nature of the workshop builds a shared understanding of the domain
+and what needs to be built.</p>
+
+<p>Since I’m still a team of one I’m not running a workshop. I’m going to do my
+best to simulate the process and walk through the steps of event storming and
+the follow on activities.</p>
+
+<h2 id="the-story-map">The Story Map</h2>
+<p>In the previous post on <a href="/microservices/story-mapping-the-job-board/">story mapping</a>
+we discussed taking the user journey and building a story map. We ended that post
+by firing a tracer bullet through a set of stories that provided value and created
+the backbone for the entire application. Here is what it looked like:</p>
+
+<figure>
+    <a href="/assets/images/journey/story-map-phase3.png"><img src="/assets/images/journey/story-map-phase3.png" /></a>
+    <figcaption>The Story Map w/Tracer Bullet</figcaption>
+</figure>
+
+<h2 id="clear-the-map">Clear the Map</h2>
+<p>Everything below the stories identified by the tracer bullet is possible future work.
+I’m going to clear them off along with our tracer bullet so we can focus on our
+stories.</p>
+<figure>
+    <a href="/assets/images/event-storming/event-storming-phase1.png"><img src="/assets/images/event-storming/event-storming-phase1.png" /></a>
+    <figcaption>The map is cleared</figcaption>
+</figure>
+
+<p><strong>Why do I clear the map?</strong> Because I don’t want to think about the future work.
+<strong>Isn’t the future work important to think about?</strong> Yes and No. Hopefully,through
+collaboration, everyone on the team has an understanding of where things are headed,
+but I have found that if you leave everything on the map during event storming the
+team will begin to try to squeeze in things that may (or may not) come later. This
+can lead to over engineering and delays. What you should be focused on is providing
+value as quickly as possible to the customer.</p>
+
+<h2 id="identify-the-command-and-query-stories">Identify the Command and Query Stories</h2>
+<p>Now that we have our tracer bullet stories in isolation we should recognize that there
+are two kinds of stories.</p>
+<ol>
+  <li>Stories that change the system (Command)</li>
+  <li>Stories that query the system (Query)</li>
+</ol>
+
+<p>Command stories change the system and produce <strong>domain events</strong>.
+Query stories view the state of the system in different ways.
+By having these two types of stories, we are following the
+pattern of Command and Query Responsibility Segregation (CQRS). If you
+find a user sub-task story that seems to do both (change the system while viewing its state),
+you should analyze it and break it down into two or more Command and Query stories.
+Going back to the story map, I’ve put a red circle around the Command stories and blue circles
+around the Query stories.</p>
+
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase2.png">
+  <img src="/assets/images/event-storming/event-storming-phase2.png" />
+  </a>
+  <figcaption>Identified the Command and Query stories</figcaption>
+</figure>
+
+<h2 id="storm-the-events">Storm the Events</h2>
+<p>Now comes the fun part. We get to think about the Command stories and what kind
+of events would be produced by each story. Some things to keep in mind.</p>
+<ul>
+  <li>Collaborate - This is a team effort</li>
+  <li>Use words from the domain</li>
+  <li>Events are things that happen<strong>ed</strong>, so use the past tense.</li>
+  <li>More than 1 event can be produced.</li>
+  <li>The same event can be produced by two separate stories</li>
+</ul>
+
+<p>I worked through the story map and decided on the following events:</p>
+<ul>
+  <li>User Registered</li>
+  <li>User Logged In</li>
+  <li>Job Posted</li>
+  <li>Application Started</li>
+  <li>Work Experience Added</li>
+  <li>Resume Attached</li>
+  <li>Application Completed</li>
+  <li>Applicant Contacted</li>
+</ul>
+
+<p>So we can see that the words of the domain are starting to emerge.
+I chose to use the word Applicant for the person applying to a job. I
+thought about using the term Job Seeker, but stuck with words that were
+more closely tied to the action of applying. Application Started and
+Completed came out of some brain storming. The applicant should be
+able to add multiple work experiences and attach a resume and change
+their mind and attache a different resume and then complete the
+application. I think the logical thing would be to have an event that
+signifies the start of the process. Going back to the story map
+I placed the events under their respective stories:</p>
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase3.png">
+  <img src="/assets/images/event-storming/event-storming-phase3.png" />
+  </a>
+  <figcaption>Events are added to the map</figcaption>
+</figure>
+
+<h2 id="work-backwards-to-commands">Work Backwards to Commands</h2>
+<p>We have the events, so now we need to figure out what commands trigger
+the events. Starting with the event, we think about what command would
+logically create it. Some things to remember when doing this:</p>
+
+<ul>
+  <li>Commands do not have to follow the same name as the event.</li>
+  <li>Commands are in the present tense</li>
+  <li>Different commands may produce the same event</li>
+  <li>Not all Commands are from a user or through user interaction</li>
+</ul>
+
+<p>Here are the commands I came up with:</p>
+
+<ul>
+  <li>Register User</li>
+  <li>Log In</li>
+  <li>Apply to Job</li>
+  <li>Enter Work Experience</li>
+  <li>Attach Resume</li>
+  <li>Complete Application</li>
+  <li>Contact Applicant</li>
+</ul>
+
+<p>In practice, I like to put the events on a white board next to the command(s) that
+generate them.</p>
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase4.png">
+  <img src="/assets/images/event-storming/event-storming-phase4.png" />
+  </a>
+  <figcaption>Commands next to their events</figcaption>
+</figure>
+
+<h2 id="identify-the-bounded-contexts">Identify the Bounded Contexts</h2>
+<p>Now that the commands and events have been identified they can be grouped together
+into cohesive sets. For example, the registration and login command and events can
+be grouped together as they are directly related to the user. The commands and
+events pertaining to applying for a job can be grouped together leaving the ones
+associated with posting a new job together by themselves. Grouping them together
+this way helps to identify the bounded contexts. The bounded contexts can then be
+given names from the domain.</p>
+
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase5.png">
+  <img src="/assets/images/event-storming/event-storming-phase5.png" />
+  </a>
+  <figcaption>Identifying the Bounded Contexts</figcaption>
+</figure>
+
+<p>We have found our events, commands, and identified
+our bounded contexts. But what about those other stories? The query ones? Is there
+anything we can do with those?</p>
+
+<h2 id="examine-the-query-stories">Examine the Query Stories</h2>
+<p>The query stories describe the views or how users see the system. In our system
+these views will be built from the events. We now know the events, so lets take
+another look at these stories.</p>
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase6.png">
+  <img src="/assets/images/event-storming/event-storming-phase6.png" />
+  </a>
+  <figcaption>The Query Stories</figcaption>
+</figure>
+
+<h2 id="determine-the-query-building-events">Determine the Query Building Events</h2>
+<p>Not all the events will be used to populate the query views. We can start by
+trying to determine which events will contain the data required by the views.
+I took a shot at this and came up with:</p>
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase7.png">
+  <img src="/assets/images/event-storming/event-storming-phase7.png" />
+  </a>
+  <figcaption>Assigning events to the query stories</figcaption>
+</figure>
+
+<p>Unfortunately we still don’t have any idea of what kind of data will be needed
+by the views. In turn that means we don’t know what kind of data will need to
+be supplied by the events. How do we solve this?</p>
+
+<h2 id="ux-helps-identify-the-data">UX Helps Identify the Data</h2>
+<p>An effective way of solving the problem is to use wireframes of the user
+interface. I don’t have a UX expert working on this (which I highly
+recommend) but I can make some reasonable guesses. By putting the wireframes
+in order over the stories it becomes easier to see how a user will interact
+with the application and what kind of data they will need.</p>
+<figure>
+  <a href="/assets/images/event-storming/event-storming-phase8.png">
+  <img src="/assets/images/event-storming/event-storming-phase8.png" />
+  </a>
+  <figcaption>UX wireframes help us find the data</figcaption>
+</figure>
+
+<p>Now it becomes easy to see the kind of data the events need to provide which in
+turn dictates the kind of data the commands need to contain. Next up we will
+dig further into this when we discover our aggregates and design our events.</p>
+
+<h2 id="references-and-tools">References and Tools</h2>
+<ul>
+  <li><a href="http://ziobrando.blogspot.com/2013/11/introducing-event-storming.html#.VbhQTn-9KK1">Introducing Event Storming</a></li>
+  <li><a href="https://techbeacon.com/devops/introduction-event-storming-easy-way-achieve-domain-driven-design">How to Use Event Storming</a></li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#event-storming" class="page__taxonomy-item" rel="tag">Event Storming</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#story-mapping" class="page__taxonomy-item" rel="tag">Story Mapping</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#ddd" class="page__taxonomy-item" rel="tag">DDD</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-10-20T09:30:30-04:00">October 20, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Event+Storming+to+Find+the+Domain%20https%3A%2F%2Fvisualizeit-consulting.com%2Fddd%2Fevent-storming-to-find-domain%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fvisualizeit-consulting.com%2Fddd%2Fevent-storming-to-find-domain%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fvisualizeit-consulting.com%2Fddd%2Fevent-storming-to-find-domain%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/microservices/story-mapping-the-job-board/" class="pagination--pager" title="Story Mapping the Job Board
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/microservices/story-mapping-the-job-board/" rel="permalink">Story Mapping the Job Board
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Now that the detour is over, we can focus on creating a story map for the job
+board. Story mapping has been around for years, but I am still surprised by the...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/microservices/detour-to-personas-and-journeys/" rel="permalink">A Detour to Personas and Journeys
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">So I might have gotten a little ahead of myself. I meant this post to be about story mapping the job board application. When I sat down to do that, I realize...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/microservices/job-req-application/" rel="permalink">The CQRS+ES Job Application Tracker
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In my recent search for a new job, I’ve had the pleasure of interacting with some different job search sites. I’ve been frustrated at a couple of them, one i...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/microservices/downtimes-no-fun/" rel="permalink">Downtime’s no fun - Time to build
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">So here we are in October 2020. On September 30th I finished transitioning my latest project to another team and I am having some down time before starting a...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://linkedin.com" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Andy Whitaker. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>
